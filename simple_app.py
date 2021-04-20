@@ -3,15 +3,15 @@ import mysql.connector
 from getpass import getpass
 import os
 
-
 # Configuration
 app = Flask(__name__)
 
+# Connection settings for AWS MySql instance
 db_connection = mysql.connector.connect(
-    user = 'root', 
+    user = 'admin', 
     password = getpass("Enter Password: "), 
-    host = 'localhost',
-    database = 'bsg'
+    host = 'cs340db.cl02izp609gp.us-west-2.rds.amazonaws.com',
+    database = 'classicModels'
 )
 
 # Routes 
@@ -19,10 +19,10 @@ db_connection = mysql.connector.connect(
 def root():
     return render_template("main.j2")
 
-@app.route('/bsg-people')
+@app.route('/customer')
 def bsg_people(): 
 
-    query = "SELECT * FROM bsg_people;"
+    query = "SELECT * FROM customers;"
 
     cur = db_connection.cursor()
     cur.execute(query)
