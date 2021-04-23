@@ -8,10 +8,10 @@ Archive project for Reddit based on a Flask backend manipulating a MySql databas
 4) Run the Flask development server - `python3 app.py` 
 
 ### Current ERD:
-[!](https://raw.githubusercontent.com/jaredtconnor/Reddit-Archiver/master/Reddit%20Project%20-%20ERD.png?token=AFP6SIAF4VL7R5OT65HQ2VDARSKHO)
+![](https://raw.githubusercontent.com/jaredtconnor/Reddit-Archiver/master/Reddit%20Project%20-%20ERD.png?token=AFP6SIAF4VL7R5OT65HQ2VDARSKHO)
 
 ### Current Schema: 
-[!](https://raw.githubusercontent.com/jaredtconnor/Reddit-Archiver/master/Reddit%20Project%20-%20Schema.png?token=AFP6SIGFVOBONTXASYKBI5TARSKI6g)
+![](https://raw.githubusercontent.com/jaredtconnor/Reddit-Archiver/master/Reddit%20Project%20-%20Schema.png?token=AFP6SIGFVOBONTXASYKBI5TARSKI6g)
 
 ### Contributors: 
 1) Lindsay Goins
