@@ -23,6 +23,8 @@ def test_route():
     cursor = connection.cursor()
     cursor.execute(query) 
 
+    connection.close()
+
     return json.dumps(cursor.fetchall())
 
 # Listener
