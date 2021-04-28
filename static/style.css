@@ -1,0 +1,11 @@
+.comment_num { 
+    display: inline-block; 
+}
+
+.post_date {
+   display: inline-block 
+}
+
+.post_user_name { 
+    display: inline-block
+}
