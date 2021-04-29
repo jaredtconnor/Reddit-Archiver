@@ -11,7 +11,7 @@ Archive project for Reddit based on a Flask backend manipulating a MySql databas
 ![](https://github.com/jaredtconnor/Reddit-Archiver/blob/77d1ded50aedd46cd5ed9e1f8f318dbd9f6ef3c6/ERD.png)
 
 ### Current Schema: 
-![](https://raw.githubusercontent.com/jaredtconnor/Reddit-Archiver/master/Reddit%20Project%20-%20Schema.png?token=AFP6SIGFVOBONTXASYKBI5TARSKI6g)
+![](https://github.com/jaredtconnor/Reddit-Archiver/blob/73c04aa7e8f38e2b113479d75cbcd68c6615e49b/Schema.png)
 
 ### Contributors: 
 1) Lindsay Goins
