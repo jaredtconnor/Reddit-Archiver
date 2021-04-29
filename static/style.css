@@ -3,9 +3,13 @@
 }
 
 .post_date {
-   display: inline-block 
+   display: inline-block;
 }
 
-.post_user_name { 
-    display: inline-block
+.user_name { 
+    display: inline-block;
+}
+
+.comment { 
+    margin-bottom: 0px;
 }
