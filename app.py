@@ -15,13 +15,21 @@ def index():
 def about(): 
     return render_template("about.html")
 
-@app.route('/subreddit')
+@app.route('/subreddits')
 def subreddit(): 
     return render_template("subreddits.html")
 
 @app.route('/posts')
 def posts(): 
     return render_template("posts.html")
+
+@app.route('/users')
+def users(): 
+    return render_template("users.html")
+
+@app.route('/comments')
+def comments(): 
+    return render_template("comments.html")
 
 @app.route('/test_route')
 def test_route(): 
