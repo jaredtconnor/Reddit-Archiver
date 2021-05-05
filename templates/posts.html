@@ -43,20 +43,32 @@
   </div>
 </nav> 
 
-  <div class="container-lg pb-5" id="main_post_container">
+  <div class="container-lg p-5" id="main_post_container">
     <h4>Add Posts:</h4>
     <form>
       <div class="mb-3">
         <label for="post" class="form-label">Post Title</label>
-        <input type="email" class="form-control" id="post_title">
+        <input type="text" class="form-control" id="post_title">
+      </div>
+      <div class="mb-3">
+        <label for="post_subreddit" class="form-label">Subreddit</label>
+        <input type="text" class="form-control" id="post_subreddit">
+      </div>
+      <div class="mb-3">
+        <label for="post_username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="post_username">
       </div>
       <div class="mb-3">
         <label for="post_body" class="form-label">Body</label>
-        <input type="password" class="form-control" id="post_body">
+        <input type="text" class="form-control" id="post_body">
       </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      <div class="mb-3">
+        <label class="form-label" for="num_upvotes">Upvotes</label>
+        <input type="number" class="form-control" id="num_upvotes">
+      </div>
+      <div class="mb-3">
+        <label for="post_date" class="form-label">Date</label>
+        <input type="date" class="form-control" id="post_date">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -66,7 +78,7 @@
   <hr />
 
   <div class="container-lg" id="main_comment_containter">
-    <h1 class="display-6" id="comment_heading">Comments</h1>
+    <h1 class="display-6" id="comment_heading">Current Posts</h1>
 
     <div class="container-md" id="comment_container">
 
