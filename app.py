@@ -15,6 +15,14 @@ def index():
 def about(): 
     return render_template("about.html")
 
+@app.route('/subreddit')
+def subreddit(): 
+    return render_template("subreddits.html")
+
+@app.route('/posts')
+def posts(): 
+    return render_template("posts.html")
+
 @app.route('/test_route')
 def test_route(): 
 
