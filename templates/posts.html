@@ -77,19 +77,89 @@
 
   <hr />
 
-  <div class="container-lg" id="main_comment_containter">
-    <h1 class="display-6" id="comment_heading">Current Posts</h1>
+  <div class="container-fluid" id="main_post_containter">
+    <h1 class="display-6" id="post_heading">Current Posts</h1>
 
-    <div class="container-md" id="comment_container">
-
-      <div class="container-sm">
-        <p class="comment">This is a really cool post and comment section!</p>
-        <small>
-          <a href="#" class="comment_num">100 Comments</a>
-          <p class="post_date"> | 2020-02-15 | </p>
-          <a href="#" class="user_name"> some_user </a>
-        </small>
-      </div>
+    <div class="container-md" id="post_container">
+    <table class="table" id="post_table">
+        <thead>
+            <tr class="table_header">
+                <th>ID</th>
+                <th>Post Title</th>
+                <th>Body</th>
+                <th>Upvotes</th>
+                <th>Post Date</th>
+                <th>Subreddit</th>
+                <th>Username</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table_row">
+                <td>
+                    1
+                </td>
+                <td>
+                   CS 325 Midterm Format 
+                </td>
+                <td>
+                  Post Body
+                </td>
+                <td>
+                    9  
+                </td>
+                <td>
+                    5/4/2021
+                </td>
+                <td>
+                  r/OSUOnlineCS
+                </td>
+                <td>
+                  u/littlejack
+                </td>
+                <td class="button_columns">
+                  <input class="btn btn-outline-secondary btn-block" value="Update" type="button">
+                  <input type="hidden" id="update">
+                </td>
+                <td class="button_columns">
+                  <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
+                  <input type="hidden" id="delete">
+                </td>
+            </tr>
+            <tr class="table_row">
+                <td>
+                    2
+                </td>
+                <td>
+                   Golden Retriver goes Mountain Biking
+                </td>
+                <td>
+                  Post Body
+                </td>
+                <td>
+                    1000
+                </td>
+                <td>
+                    5/4/2016
+                </td>
+                <td>
+                  r/Animalsbeingderps
+                </td>
+                <td>
+                  u/littlejack
+                </td>
+                <td class="button_columns">
+                  <input class="btn btn-outline-secondary btn-block" value="Update" type="button">
+                  <input type="hidden" id="update">
+                </td>
+                <td class="button_columns">
+                  <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
+                  <input type="hidden" id="delete">
+                </td>
+            </tr>
+        </tbody>
+    </table>
     </div>
 
   </div>
