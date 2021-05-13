@@ -1,6 +1,6 @@
 /* Creates the table's based upon the defined reddit_archiver schema */ 
 
-CREATE TABLE Subreddits
+CREATE TABLE subreddits
 (
   subredditID INT NOT NULL AUTO_INCREMENT,
   subredditName VARCHAR(255) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE Subreddits
   UNIQUE (subredditName, subredditID)
 );
 
-CREATE TABLE Users
+CREATE TABLE users
 (
   userID INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(255) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Users
   UNIQUE (username, userID)
 );
 
-CREATE TABLE Subreddits_Users
+CREATE TABLE subreddits_Users
 (
   subredditUserID INT NOT NULL AUTO_INCREMENT,
   subredditID INT NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE Subreddits_Users
   UNIQUE(subredditUserID)
 );
 
-CREATE TABLE Posts
+CREATE TABLE posts
 (
   postID INT NOT NULL AUTO_INCREMENT,
   title VARCHAR(255) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE Posts
   UNIQUE(postID)
 );
 
-CREATE TABLE Comments
+CREATE TABLE comments
 (
   commentID INT NOT NULL AUTO_INCREMENT,
   body VARCHAR(255) NOT NULL,
