@@ -32,7 +32,7 @@ def comments():
     return render_template("comments.html")
 
 @app.route('/subreddits_users')
-def comments():
+def subreddits_users():
     return render_template("subreddits_users.html")
 
 @app.route('/test_route')
