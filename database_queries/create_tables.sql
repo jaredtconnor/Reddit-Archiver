@@ -2,60 +2,62 @@
 
 CREATE TABLE Subreddits
 (
-  subredditName INT NOT NULL,
-  description INT NOT NULL,
+  subredditID INT NOT NULL AUTO_INCREMENT,
+  subredditName VARCHAR(255) NOT NULL,
+  about VARCHAR(255) NOT NULL,
   numMembers INT NOT NULL,
-  dateCreated INT NOT NULL,
-  subredditID INT NOT NULL,
+  dateCreated DATE NOT NULL,
   PRIMARY KEY (subredditID),
-  UNIQUE (subredditName)
+  UNIQUE (subredditName, subredditID)
 );
 
 CREATE TABLE Users
 (
-  username INT NOT NULL,
+  userID INT NOT NULL AUTO_INCREMENT,
+  username VARCHAR(255) NOT NULL,
   karma INT NOT NULL,
-  cakeDay INT NOT NULL,
-  userID INT NOT NULL,
+  cakeDay DATE NOT NULL,
   PRIMARY KEY (userID),
-  UNIQUE (username)
+  UNIQUE (username, userID)
 );
 
-CREATE TABLE Posts
+CREATE TABLE Subreddits_Users
 (
-  postID INT NOT NULL,
-  title INT NOT NULL,
-  body INT NOT NULL,
-  numUpvotes INT NOT NULL,
-  postDate INT NOT NULL,
-  subredditID INT NOT NULL,
-  userID INT NOT NULL,
-  PRIMARY KEY (postID),
-  FOREIGN KEY (subredditID) REFERENCES Subreddits(subredditID),
-  FOREIGN KEY (userID) REFERENCES Users(userID)
-);
-
-CREATE TABLE Relationship
-(
-  subredditUserID INT NOT NULL,
+  subredditUserID INT NOT NULL AUTO_INCREMENT,
   subredditID INT NOT NULL,
   userID INT NOT NULL,
   PRIMARY KEY (subredditUserID),
   FOREIGN KEY (subredditID) REFERENCES Subreddits(subredditID),
   FOREIGN KEY (userID) REFERENCES Users(userID),
-  UNIQUE (subredditID, userID)
+  UNIQUE(subredditUserID)
+);
+
+CREATE TABLE Posts
+(
+  postID INT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  body VARCHAR(255) NOT NULL,
+  numUpvotes INT NOT NULL,
+  postDate DATETIME NOT NULL,
+  subredditID INT NOT NULL,
+  userID INT NOT NULL,
+  PRIMARY KEY (postID),
+  FOREIGN KEY (subredditID) REFERENCES Subreddits(subredditID),
+  FOREIGN KEY (userID) REFERENCES Users(userID),
+  UNIQUE(postID)
 );
 
 CREATE TABLE Comments
 (
-  commentID INT NOT NULL,
-  body INT NOT NULL,
+  commentID INT NOT NULL AUTO_INCREMENT,
+  body VARCHAR(255) NOT NULL,
   numUpvotes INT NOT NULL,
-  commentDate INT NOT NULL,
+  commentDate DATETIME NOT NULL,
   postID INT NOT NULL,
   userID INT NOT NULL,
   PRIMARY KEY (commentID),
   FOREIGN KEY (postID) REFERENCES Posts(postID),
-  FOREIGN KEY (userID) REFERENCES Users(userID)
+  FOREIGN KEY (userID) REFERENCES Users(userID),
+  UNIQUE(commentID)
 );
 
