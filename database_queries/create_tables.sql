@@ -11,24 +11,6 @@ CREATE TABLE subreddits
   UNIQUE (subredditName, subredditID)
 );
 
-INSERT INTO subreddits (subredditName, about, numMembers, dateCreated)
-VALUES
-	('investing', 'Come lose money with your friends', 1800000, '2008-03-15'),
-	('AnimalsBeingDerps', 'Animals acting like complete idiots', 5100, '2013-05-15'),
-	('desksetup', 'Post work stations, and desks!', 21900, '2015-06-05'), 
-	('pics', 'A place for pictures and photographs.', 27000000, '2008-01-15'),
-	('todayilearned', 'Everything you have learned today!', 25800000, '2008-12-18'), 
-	('worldnews', 'A place for major news from around the world', 26300000, '2008-01-28'), 
-	('Unexpected', 'This subreddit is for unexpected twists in videos and gifs', 3800000, '2013-04-27');
-	
-
-
-
-
-
-
-
-
 CREATE TABLE users
 (
   userID INT NOT NULL AUTO_INCREMENT,
