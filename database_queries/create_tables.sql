@@ -21,14 +21,14 @@ CREATE TABLE users
   UNIQUE (username, userID)
 );
 
-CREATE TABLE subreddits_Users
+CREATE TABLE subreddits_users
 (
   subredditUserID INT NOT NULL AUTO_INCREMENT,
   subredditID INT NOT NULL,
   userID INT NOT NULL,
   PRIMARY KEY (subredditUserID),
-  FOREIGN KEY (subredditID) REFERENCES Subreddits(subredditID),
-  FOREIGN KEY (userID) REFERENCES Users(userID),
+  FOREIGN KEY (subredditID) REFERENCES subreddits(subredditID),
+  FOREIGN KEY (userID) REFERENCES users(userID),
   UNIQUE(subredditUserID)
 );
 
@@ -42,8 +42,8 @@ CREATE TABLE posts
   subredditID INT NOT NULL,
   userID INT NOT NULL,
   PRIMARY KEY (postID),
-  FOREIGN KEY (subredditID) REFERENCES Subreddits(subredditID),
-  FOREIGN KEY (userID) REFERENCES Users(userID),
+  FOREIGN KEY (subredditID) REFERENCES subreddits(subredditID),
+  FOREIGN KEY (userID) REFERENCES users(userID),
   UNIQUE(postID)
 );
 
@@ -56,8 +56,8 @@ CREATE TABLE comments
   postID INT NOT NULL,
   userID INT NOT NULL,
   PRIMARY KEY (commentID),
-  FOREIGN KEY (postID) REFERENCES Posts(postID),
-  FOREIGN KEY (userID) REFERENCES Users(userID),
+  FOREIGN KEY (postID) REFERENCES posts(postID),
+  FOREIGN KEY (userID) REFERENCES users(userID),
   UNIQUE(commentID)
 );
 
