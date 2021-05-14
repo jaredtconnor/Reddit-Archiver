@@ -1,43 +1,84 @@
 -- : character represents user input
 
---Show Users
-SELECT * FROM Users;
+--Show users
+SELECT * FROM users;
 
---Show Comments
-SELECT * FROM Comments;
+--Show comments
+SELECT * FROM comments;
 
---Show relationship between Subreddits & Users
-SELECT * FROM Subreddits_Users;
+--Show relationship between Subreddits & users
+SELECT * FROM subreddits_users;
+
+--Show Post
+SELECT * FROM post; 
+
+--Show subreddits
+SELECT * FROM subreddits;
 
 --Add a new User
-INSERT INTO Users (username, karma, cakeDay)
+INSERT INTO users (username, karma, cakeDay)
 VALUES (:usernameInput, :karmaInput, :cakeDayInput);
 
 --Add a new Comment
-INSERT INTO Comments (body, numUpvotes, commentDate, postID, userID)
+INSERT INTO comments (body, numUpvotes, commentDate, postID, userID)
 VALUES (:bodyInput, :numUpvotesInput, :commentDateInput, :postIDInput, :userIDInput);
 
---Add a relationship between Subreddits & Users
-INSERT INTO Subreddits_Users (subredditID, userID)
+--Add a new Post
+INSERT INTO posts (title, body, numUpvotes, postDate, subredditID, userID) 
+VALUES (:title, :body, :numUpvotes, :postDate, :subredditID, :userID)
+
+--Add a new Subreddit
+INSERT INTO subreddits (subredditName, about, numMembers, dateCreated)
+VALUES (:subredditName, :about, :numMembers, :dateCreated)
+
+--Add a relationship between Subreddits & users
+INSERT INTO subreddits_users (subredditID, userID)
 VALUES (:subredditIDInput, :userIDInput);
 
---Filter Comments by Username, 'i_love_dachshunds93' as the username will give results
-SELECT Comments.body, Users.username FROM Comments
-INNER JOIN Users ON Comments.userID=Users.userID
-WHERE Users.username = :username;
+--Filter comments by Username, 'i_love_dachshunds93' as the username will give results
+SELECT comments.body, users.username FROM comments
+INNER JOIN users ON comments.userID=users.userID
+WHERE users.username = :username;
+
+--Filter subreddits by Posts, containing posts with >= 100 upvotes
+SELECT subreddits.subredditName, posts.title, posts.numUpvotes, posts.Date FROM subreddits
+LEFT JOIN posts ON subreddits.subredditID = posts.subredditID
+WHERE posts.numUpvotes >= 100;
 
 --Edit (Update) a Comment
-UPDATE Comments SET body = :newComment
-WHERE Comments.commentID = :commentID;
+UPDATE comments SET body = :newComment
+WHERE comments.commentID = :commentID;
+
+--Edit (Update) a Post's body and title
+UPDATE posts 
+SET title = :newTitle, 
+    body = :newBody
+WHERE posts.postID = :postID
+
+--Edit (Update) a Subreddits description
+UPDATE subreddits
+SET about = :newAbout
+WHERE subreddits.subredditID = :subredditID
 
 --Delete a Comment
-DELETE FROM Comments
-WHERE Comments.commentID = :commentID;
+DELETE FROM comments
+WHERE comments.commentID = :commentID;
 
 --Delete a User
-DELETE FROM Users
-WHERE Users.userID = :userID;
+DELETE FROM users
+WHERE users.userID = :userID;
 
 --Removes the relationship between a Subreddit and a User
-DELETE FROM Subreddits_Users
-WHERE Subreddits_Users.subredditUserID = :subredditUserID;
+DELETE FROM subreddits_users
+WHERE subreddits_users.subredditUserID = :subredditUserID;
+
+--Delete a Post
+DELETE FROM posts 
+WHERE posts.postID = :postID; 
+
+--Delete a Subreddit
+DELETE FROM subreddits 
+WHERE subreddits.subredditID = :subredditID; 
+
+
+
