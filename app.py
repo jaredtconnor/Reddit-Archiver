@@ -1,6 +1,8 @@
 from flask import Flask, render_template, json, request
 from getpass import getpass
 import os
+
+from pymysql import NULL
 from db_connection import connection
 
 # Configuration
@@ -17,11 +19,18 @@ def about():
 
 @app.route('/subreddits')
 def subreddit(): 
+
+
+
     return render_template("subreddits.html")
 
-@app.route('/posts')
+@app.route('/posts', methods=['GET'])
 def posts(): 
     return render_template("posts.html")
+
+@app.route('/posts', methods=['POST'])
+def add_post(): 
+    return NULL
 
 @app.route('/users')
 def users(): 
