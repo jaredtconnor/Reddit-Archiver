@@ -1,9 +1,9 @@
 from flask import Flask, render_template, json, request
 from getpass import getpass
 import os
-
 from pymysql import NULL
 from db_connection import connection
+from .forms import PostForm
 
 # Configuration
 app = Flask(__name__)
@@ -19,9 +19,6 @@ def about():
 
 @app.route('/subreddits')
 def subreddit(): 
-
-
-
     return render_template("subreddits.html")
 
 @app.route('/posts', methods=['GET'])
@@ -30,6 +27,13 @@ def posts():
 
 @app.route('/posts', methods=['POST'])
 def add_post(): 
+    form = PostForm() 
+
+
+
+
+
+
     return NULL
 
 @app.route('/users')

@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container-lg p-5" id="main_post_container">
   <h4>Add Posts:</h4>
-  <form>
+  <form action="" method ="POST" onsubmit="submitPostForm(); return false;">
     <div class="mb-3">
       <label for="post" class="form-label">Post Title</label>
       <input type="text" class="form-control" id="post_title">
