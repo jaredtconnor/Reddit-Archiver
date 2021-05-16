@@ -1,12 +1,13 @@
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request, redirect, url_for
 from getpass import getpass
 import os
 from pymysql import NULL
-from db_connection import connection
-from .forms import PostForm
+from db_connection import Database
+
 
 # Configuration
 app = Flask(__name__)
+db = Database()
 
 # Routes 
 @app.route('/')
@@ -23,18 +24,32 @@ def subreddit():
 
 @app.route('/posts', methods=['GET'])
 def posts(): 
-    return render_template("posts.html")
+
+    post_data = db.read_posts()
+
+    return render_template("posts.html", post_data = post_data)
 
 @app.route('/posts', methods=['POST'])
 def add_post(): 
-    form = PostForm() 
+
+    title = request.form.get('post_title')
+    subreddit = request.form.get('post_subreddit')
+    username = request.form.get('post_username')
+    body = request.form.get('post_body')
+    num_upvotes = request.form.get('num_upvotes')
+    date = request.form.get('post_date')
+
+    print(f''' 
+            Title: {title}
+            Subreddit: {subreddit}
+            Username: {username}
+            Body: {body}
+            Upvotes: {num_upvotes}
+            Date: {date}
+    ''')
 
 
-
-
-
-
-    return NULL
+    return redirect(url_for('posts'))
 
 @app.route('/users')
 def users(): 
@@ -42,7 +57,9 @@ def users():
 
 @app.route('/comments')
 def comments(): 
-    return render_template("comments.html")
+    comment_data = db.read_comments() 
+
+    return render_template("comments.html", comment_data = comment_data)
 
 @app.route('/subreddits_users')
 def subreddits_users():

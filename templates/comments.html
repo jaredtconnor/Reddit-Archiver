@@ -51,126 +51,48 @@
 
     <table class="table" id="comment_table">
         <thead>
-            <th>Post ID</th>
-            <th>User ID</th>
-            <th>Comment ID</th>
-            <th>Comment Body</th>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Post Title</th>
+            <th>Comment</th>
+            <th>Subreddit</th>
             <th>Number of Upvotes</th>
-            <th>Date</th>
-            <th>Edit Comment</th>
-            <th>Delete Comment</th>
+            <th>Edit</th>
+            <th>Delete</th>
             </tr>
         </thead>
-        <tbody>
-            <tr class="table_row">
-                <td>
-                    412
-                </td>
-                <td>
-                    54
-                </td>
-                <td>
-                    458
-                </td>
-                <td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pretium, urna placerat posuere
-                    imperdiet, neque.
-                </td>
-                <td>
-                    1
-                </td>
-                <td>
-                    5/6/2021
-                </td>
-                <td>
-                    <button class="btn btn-outline-secondary">Update</button>
-                </td>
-                <td>
-                    <button class="btn btn-outline-secondary">Delete</button>
-                </td>
-            </tr>
-            <tr class="table_row">
-                <td>
-                    394
-                </td>
-                <td>
-                    90
-                </td>
-                <td>
-                    457
-                </td>
-                <td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pretium, urna placerat posuere
-                    imperdiet, neque.
-                </td>
-                <td>
-                    2
-                </td>
-                <td>
-                    5/6/2021
-                </td>
-                <td>
-                    <button class="btn btn-outline-secondary">Update</button>
-                </td>
-                <td>
-                    <button class="btn btn-outline-secondary">Delete</button>
-                </td>
-            </tr>
-            <tr class="table_row">
-                <td>
-                    371
-                </td>
-                <td>
-                    32
-                </td>
-                <td>
-                    456
-                </td>
-                <td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pretium, urna placerat posuere
-                    imperdiet, neque.
-                </td>
-                <td>
-                    1
-                </td>
-                <td>
-                    5/6/2021
-                </td>
-                <td>
-                    <button class="btn btn-outline-secondary">Update</button>
-                </td>
-                <td>
-                    <button class="btn btn-outline-secondary">Delete</button>
-                </td>
-            </tr>
-            <tr class="table_row">
-                <td>
-                    368
-                </td>
-                <td>
-                    89
-                </td>
-                <td>
-                    455
-                </td>
-                <td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pretium, urna placerat posuere
-                    imperdiet, neque.
-                </td>
-                <td>
-                    6
-                </td>
-                <td>
-                    5/6/2021
-                </td>
-                <td>
-                    <button class="btn btn-outline-secondary">Update</button>
-                </td>
-                <td>
-                    <button class="btn btn-outline-secondary">Delete</button>
-                </td>
-            </tr>
-        </tbody>
+      
+      <tbody>
+        {% if comment_data|length == 0 %}
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        {% else %}
+          {% for row in comment_data %}
+          <tr class="table_row">
+            <td>{{ row['commentID']}}</td>
+            <td>{{ row['username']}}</td>
+            <td>{{ row['title']}}</td>
+            <td>{{ row['body']}}</td>
+            <td>{{ row['subredditName']}}</td>
+            <td>{{ row['numUpvotes']}}</td>
+            <td class="button_columns">
+              <input class="btn btn-outline-secondary btn-block" value="Update" type="button">
+              <input type="hidden" id="update">
+            </td>
+            <td class="button_columns">
+              <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
+              <input type="hidden" id="delete">
+            </td>
+          </tr>
+          {% endfor %}
+        {% endif %}
+      </tbody>
     </table>
 </div>
 {% endblock %}
