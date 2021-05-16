@@ -32,22 +32,16 @@ def posts():
 @app.route('/posts', methods=['POST'])
 def add_post(): 
 
-    title = request.form.get('post_title')
-    subreddit = request.form.get('post_subreddit')
-    username = request.form.get('post_username')
-    body = request.form.get('post_body')
-    num_upvotes = request.form.get('num_upvotes')
-    date = request.form.get('post_date')
+    post_data = { 
+    'title': request.form.get('post_title'), 
+    'subreddit': request.form.get('post_subreddit'),
+    'username': request.form.get('post_username'),
+    'body': request.form.get('post_body'),
+    'num_upvotes': request.form.get('num_upvotes'),
+    'date': request.form.get('post_date')
+    }
 
-    print(f''' 
-            Title: {title}
-            Subreddit: {subreddit}
-            Username: {username}
-            Body: {body}
-            Upvotes: {num_upvotes}
-            Date: {date}
-    ''')
-
+    db.insert_post(post_data)
 
     return redirect(url_for('posts'))
 
@@ -64,18 +58,6 @@ def comments():
 @app.route('/subreddits_users')
 def subreddits_users():
     return render_template("subreddits_users.html")
-
-@app.route('/test_route')
-def test_route(): 
-
-    query = "SELECT * FROM Comments"
-
-    cursor = connection.cursor()
-    cursor.execute(query) 
-
-    connection.close()
-
-    return json.dumps(cursor.fetchall())
 
 # Listener
 if __name__ == "__main__":
