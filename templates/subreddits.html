@@ -2,20 +2,24 @@
 
 
 {% block body %}
-<div class="container-lg p-5" id="main_post_container">
+<div class="container-lg p-5" id="main_subreddit_container">
   <h4>Add Subreddit:</h4>
-  <form>
+  <form action="{{ url_for('subreddits') }}" method="POST">
     <div class="mb-3">
       <label for="subreddit_name" class="form-label">Subreddit Name</label>
-      <input type="text" class="form-control" id="subreddit_name">
+      <input type="text" class="form-control" id="subreddit_name" name="subreddit_name">
     </div>
     <div class="mb-3">
       <label for="subreddit_users" class="form-label">Number of Users</label>
-      <input type="text" class="form-control" id="subreddit_users">
+      <input type="text" class="form-control" id="subreddit_users" name="subreddit_users">
+    </div>
+    <div class="mb-3">
+      <label for="subreddit_about" class="form-label">About</label>
+      <input type="text" class="form-control" id="subreddit_about" name="subreddit_about">
     </div>
     <div class="mb-3">
       <label for="subreddit_date_created" class="form-label">Date Created</label>
-      <input type="date" class="form-control" id="subreddit_date_created">
+      <input type="date" class="form-control" id="subreddit_date_created" name="subreddit_date_created">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
@@ -31,25 +35,29 @@
       <th>ID</th>
       <th>Subreddit Name</th>
       <th>Number of Users</th>
+      <th>About</th>
       <th>Date Created</th>
       <th></th>
       <th></th>
       </tr>
     </thead>
     <tbody>
+      {% if subreddit_data|length == 0 %}
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      {% else %}
+      {% for row in subreddit_data %}
       <tr class="table_row">
-        <td>
-          1
-        </td>
-        <td>
-          Subreddit_1
-        </td>
-        <td>
-          5,000
-        </td>
-        <td>
-          5/1/200
-        </td>
+        <td>{{ row['subredditID']}}</td>
+        <td>{{ row['subredditName']}}</td>
+        <td>{{ row['numMembers']}}</td>
+        <td>{{ row['about']}}</td>
+        <td>{{ row['dateCreated']}}</td>
         <td class="button_columns">
           <input class="btn btn-outline-secondary btn-block" value="Update" type="button">
           <input type="hidden" id="update">
@@ -59,6 +67,8 @@
           <input type="hidden" id="delete">
         </td>
       </tr>
+      {% endfor %}
+      {% endif %}
     </tbody>
   </table>
 </div>

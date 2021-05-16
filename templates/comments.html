@@ -2,34 +2,34 @@
 
 {% block body %}
 <div class="container-lg" id="add_comment_container">
-    <h1 class="display-6" id="add_comment">Add a Comment</h1>
-    <form>
-        <div class="mb-3">
-            <label for="user_id" class="form-label">User ID</label>
-            <input type="number" class="form-control" id="user_id">
-        </div>
-        <div class="mb-3">
-            <label for="post_id" class="form-label">Post ID</label>
-            <input type="number" class="form-control" id="post_id">
-        </div>
-        <div class="mb-3">
-            <label for="comment_id" class="form-label">Comment ID</label>
-            <input type="number" class="form-control" id="comment_id" placeholder="Auto-Incrementing" readonly>
-        </div>
-        <div class="mb-3">
-            <label for="body" class="form-label">Body of Comment</label>
-            <input type="text" class="form-control" id="body">
-        </div>
-        <div class="mb-3">
-            <label for="num_upvotes" class="form-label">Number of Upvotes</label>
-            <input type="number" class="form-control" id="num_upvotes">
-        </div>
-        <div class="mb-3">
-            <label for="comment_date" class="form-label">Date</label>
-            <input type="date" class="form-control" id="comment_date">
-        </div>
-        <button type="submit" class="btn btn-primary">Add Comment</button>
-    </form>
+  <h1 class="display-6" id="add_comment">Add a Comment</h1>
+  <form action="{{ url_for('comments') }}" method="POST">
+    <div class="mb-3">
+      <label for="user_id" class="form-label">User ID</label>
+      <input type="number" class="form-control" id="user_id" name="user_id">
+    </div>
+    <div class="mb-3">
+      <label for="post_id" class="form-label">Post ID</label>
+      <input type="number" class="form-control" id="post_id" name="post_id">
+    </div>
+    <div class="mb-3">
+      <label for="comment_id" class="form-label">Comment ID</label>
+      <input type="number" class="form-control" id="comment_id" name="comment_id" placeholder="Auto-Incrementing" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="body" class="form-label">Body of Comment</label>
+      <input type="text" class="form-control" id="body" name="body">
+    </div>
+    <div class="mb-3">
+      <label for="num_upvotes" class="form-label">Number of Upvotes</label>
+      <input type="number" class="form-control" id="num_upvotes" name="num_upvotes">
+    </div>
+    <div class="mb-3">
+      <label for="comment_date" class="form-label">Date</label>
+      <input type="date" class="form-control" id="comment_date" name="comment_date">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+  </form>
 </div>
 
 <br>
@@ -39,60 +39,60 @@
 <h1 class="display-6" id="recent_comments">Recent Comments</h1>
 <div class="container-lg" id="comment_table_container">
 
-    <h6>Filter comments by username</h6>
-    <div class="row">
-        <div class="col-4">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col-2">
-            <button class="btn btn-primary" type="button">Filter</button>
-        </div>
+  <h6>Filter comments by username</h6>
+  <div class="row">
+    <div class="col-4">
+      <input type="text" class="form-control">
     </div>
+    <div class="col-2">
+      <button class="btn btn-primary" type="button">Filter</button>
+    </div>
+  </div>
 
-    <table class="table" id="comment_table">
-        <thead>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Post Title</th>
-            <th>Comment</th>
-            <th>Subreddit</th>
-            <th>Number of Upvotes</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            </tr>
-        </thead>
-      
-      <tbody>
-        {% if comment_data|length == 0 %}
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        {% else %}
-          {% for row in comment_data %}
-          <tr class="table_row">
-            <td>{{ row['commentID']}}</td>
-            <td>{{ row['username']}}</td>
-            <td>{{ row['title']}}</td>
-            <td>{{ row['body']}}</td>
-            <td>{{ row['subredditName']}}</td>
-            <td>{{ row['numUpvotes']}}</td>
-            <td class="button_columns">
-              <input class="btn btn-outline-secondary btn-block" value="Update" type="button">
-              <input type="hidden" id="update">
-            </td>
-            <td class="button_columns">
-              <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
-              <input type="hidden" id="delete">
-            </td>
-          </tr>
-          {% endfor %}
-        {% endif %}
-      </tbody>
-    </table>
+  <table class="table" id="comment_table">
+    <thead>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Post Title</th>
+      <th>Comment</th>
+      <th>Subreddit</th>
+      <th>Number of Upvotes</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% if comment_data|length == 0 %}
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      {% else %}
+      {% for row in comment_data %}
+      <tr class="table_row">
+        <td>{{ row['commentID']}}</td>
+        <td>{{ row['username']}}</td>
+        <td>{{ row['title']}}</td>
+        <td>{{ row['body']}}</td>
+        <td>{{ row['subredditName']}}</td>
+        <td>{{ row['numUpvotes']}}</td>
+        <td class="button_columns">
+          <input class="btn btn-outline-secondary btn-block" value="Update" type="button">
+          <input type="hidden" id="update">
+        </td>
+        <td class="button_columns">
+          <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
+          <input type="hidden" id="delete">
+        </td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}

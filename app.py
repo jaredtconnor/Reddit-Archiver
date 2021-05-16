@@ -18,9 +18,26 @@ def index():
 def about(): 
     return render_template("about.html")
 
-@app.route('/subreddits')
-def subreddit(): 
-    return render_template("subreddits.html")
+@app.route('/subreddits', methods=['GET'])
+def subreddits(): 
+
+    subreddit_data = db.read_subreddits()
+
+    return render_template("subreddits.html", subreddit_data = subreddit_data)
+
+@app.route('/subreddits', methods=['POST'])
+def add_subreddit(): 
+
+    subreddit_data = { 
+    'name': request.form.get('subreddit_name'), 
+    'num_users': request.form.get('subreddit_users'),
+    'about': request.form.get('subreddit_about'), 
+    'date': request.form.get('subreddit_date_created'),
+    }
+
+    db.insert_subreddit(subreddit_data)
+
+    return redirect(url_for('subreddits'))
 
 @app.route('/posts', methods=['GET'])
 def posts(): 
@@ -49,11 +66,26 @@ def add_post():
 def users(): 
     return render_template("users.html")
 
-@app.route('/comments')
+@app.route('/comments', methods=['GET'])
 def comments(): 
     comment_data = db.read_comments() 
 
     return render_template("comments.html", comment_data = comment_data)
+
+@app.route('/comments', methods=['POST'])
+def add_comment(): 
+
+    comment_data = { 
+    'user_id': request.form.get('user_id'), 
+    'post_id': request.form.get('post_id'), 
+    'body': request.form.get('body'), 
+    'num_upvotes': request.form.get('num_upvotes'), 
+    'date': request.form.get('comment_date'), 
+    }
+
+    db.insert_comment(comment_data)
+
+    return redirect(url_for('comments'))
 
 @app.route('/subreddits_users')
 def subreddits_users():
