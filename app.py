@@ -34,12 +34,10 @@ def add_subreddit():
     'about': request.form.get('subreddit_about'), 
     'date': request.form.get('subreddit_date_created'),
     }
-    print(subreddit_data)
-    return "hi"
 
-    # db.insert_subreddit(subreddit_data)
-    #
-    # return redirect(url_for('subreddits'))
+    db.insert_subreddit(subreddit_data)
+
+    return redirect(url_for('subreddits'))
 
 @app.route('/posts', methods=['GET'])
 def posts(): 
