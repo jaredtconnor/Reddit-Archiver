@@ -30,68 +30,23 @@
     <thead>
       <th>Subreddit_User ID</th>
       <th>Subreddit ID</th>
+      <th>Subreddit Name</th>
       <th>User ID</th>
+      <th>Username</th>
       <th>Delete Relationship</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="table_row">
-        <td>
-          1
-        </td>
-        <td>
-          1
-        </td>
-        <td>
-          54
-        </td>
-        <td>
-          <button class="btn btn-outline-secondary">Delete</button>
-        </td>
-      </tr>
-      <tr class="table_row">
-        <td>
-          2
-        </td>
-        <td>
-          1
-        </td>
-        <td>
-          90
-        </td>
-        <td>
-          <button class="btn btn-outline-secondary">Delete</button>
-        </td>
-      </tr>
-      <tr class="table_row">
-        <td>
-          3
-        </td>
-        <td>
-          2
-        </td>
-        <td>
-          32
-        </td>
-        <td>
-          <button class="btn btn-outline-secondary">Delete</button>
-        </td>
-      </tr>
-      <tr class="table_row">
-        <td>
-          4
-        </td>
-        <td>
-          1
-        </td>
-        <td>
-          89
-        </td>
-        <td>
-          <button class="btn btn-outline-secondary">Delete</button>
-        </td>
-      </tr>
-    </tbody>
+            {% for row in subreddits_users_data %}
+            <tr class="table_row">
+                <td>{{ row['subredditUserID']}}</td>
+                <td>{{ row['subredditID']}}</td>
+                <td>{{ row['subredditName']}}</td>
+                <td>{{ row['userID']}}</td>
+                <td>{{ row['username']}}</td>
+                <td><button class="btn btn-outline-secondary">Delete</button></td>
+            </tr>
+        </tbody>
   </table>
 </div>
 

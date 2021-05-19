@@ -62,9 +62,11 @@ def add_post():
 
     return redirect(url_for('posts'))
 
-@app.route('/users')
-def users(): 
-    return render_template("users.html")
+@app.route('/users', methods=['GET'])
+def users():
+    user_data = db.read_users()
+
+    return render_template("users.html", user_data=user_data)
 
 @app.route('/comments', methods=['GET'])
 def comments(): 
@@ -87,9 +89,11 @@ def add_comment():
 
     return redirect(url_for('comments'))
 
-@app.route('/subreddits_users')
+@app.route('/subreddits_users', methods=['GET'])
 def subreddits_users():
-    return render_template("subreddits_users.html")
+    subreddits_users_data = db.read_subreddits_users()
+
+    return render_template("subreddits_users.html", subreddits_users_data=subreddits_users_data)
 
 # Listener
 if __name__ == "__main__":
