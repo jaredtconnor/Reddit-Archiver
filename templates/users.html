@@ -6,19 +6,19 @@
     <form action="{{ url_for('users') }}" method="POST">
         <div class="mb-3">
             <label for="user_id" class="form-label">User ID</label>
-            <input type="number" class="form-control" id="user_id" placeholder="Auto-Incrementing" readonly>
+            <input type="number" class="form-control" id="user_id" name="user_id" placeholder="Auto-Incrementing" readonly>
         </div>
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username">
+            <input type="text" class="form-control" id="username" name="username">
         </div>
         <div class="mb-3">
             <label for="karma" class="form-label">Karma</label>
-            <input type="number" class="form-control" id="karma">
+            <input type="number" class="form-control" id="karma" name="karma">
         </div>
         <div class="mb-3">
             <label for="cake_day" class="form-label">Cake Day</label>
-            <input type="date" class="form-control" id="cake_day">
+            <input type="date" class="form-control" id="cake_day" name="cake_day">
         </div>
         <button type="submit" class="btn btn-primary">Add User</button>
     </form>

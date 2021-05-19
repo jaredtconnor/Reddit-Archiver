@@ -6,15 +6,15 @@
   <form action="{{ url_for('subreddits_users') }}" method="POST">
     <div class="mb-3">
       <label for="sub_user_id" class="form-label">Subreddit_User ID</label>
-      <input type="number" class="form-control" id="sub_user_id" placeholder="Auto-Incrementing" readonly>
+      <input type="number" class="form-control" id="sub_user_id" name="sub_user_id" placeholder="Auto-Incrementing" readonly>
     </div>
     <div class="mb-3">
       <label for="subreddit_id" class="form-label">Subreddit ID</label>
-      <input type="number" class="form-control" id="subreddit_id">
+      <input type="number" class="form-control" id="subreddit_id" name="subreddit_id">
     </div>
     <div class="mb-3">
       <label for="user_id" class="form-label">User ID</label>
-      <input type="number" class="form-control" id="user_id">
+      <input type="number" class="form-control" id="user_id" name="user_id">
     </div>
     <button type="submit" class="btn btn-primary">Add Relationship</button>
   </form>
@@ -37,6 +37,14 @@
       </tr>
     </thead>
     <tbody>
+            {% if subreddits_users_data|length == 0 %}
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            {% else %}
             {% for row in subreddits_users_data %}
             <tr class="table_row">
                 <td>{{ row['subredditUserID']}}</td>
@@ -47,6 +55,7 @@
                 <td><button class="btn btn-outline-secondary">Delete</button></td>
             </tr>
             {% endfor %}
+            {% endif %}
         </tbody>
   </table>
 </div>
