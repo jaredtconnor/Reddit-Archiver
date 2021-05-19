@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container-lg" id="add_user_container">
     <h1 class="display-6" id="add_user">Add a User</h1>
-    <form>
+    <form action="{{ url_for('users') }}" method="POST">
         <div class="mb-3">
             <label for="user_id" class="form-label">User ID</label>
             <input type="number" class="form-control" id="user_id" placeholder="Auto-Incrementing" readonly>
@@ -48,6 +48,7 @@
                 <td>{{ row['cakeDay']}}</td>
                 <td><button class="btn btn-outline-secondary">Delete</button></td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

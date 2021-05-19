@@ -68,6 +68,19 @@ def users():
 
     return render_template("users.html", user_data=user_data)
 
+@app.route('/users', methods=['POST'])
+def add_user():
+
+    user_data = {
+        'username': request.form.get('username'),
+        'karma': request.form.get('karma'),
+        'cakeDay': request.form.get('cake_day')
+    }
+
+    db.insert_user(user_data)
+
+    return redirect(url_for('users'))
+
 @app.route('/comments', methods=['GET'])
 def comments(): 
     comment_data = db.read_comments() 
@@ -94,6 +107,19 @@ def subreddits_users():
     subreddits_users_data = db.read_subreddits_users()
 
     return render_template("subreddits_users.html", subreddits_users_data=subreddits_users_data)
+
+@app.route('/subreddits_users', methods=['POST'])
+def add_subreddit_user():
+
+    subreddit_user_data = {
+    'subredditID': request.form.get('subreddit_id'),
+    'userID': request.form.get('user_id')
+    }
+
+    db.insert_subreddit_user(subreddit_user_data)
+
+    return redirect(url_for('subreddits_users'))
+
 
 # Listener
 if __name__ == "__main__":
