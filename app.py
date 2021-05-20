@@ -91,8 +91,8 @@ def comments():
 def add_comment(): 
 
     comment_data = { 
-    'user_id': request.form.get('user_id'), 
-    'post_id': request.form.get('post_id'), 
+    'username': request.form.get('username'),
+    'post_title': request.form.get('post_title'),
     'body': request.form.get('body'), 
     'num_upvotes': request.form.get('num_upvotes'), 
     'date': request.form.get('comment_date'), 
