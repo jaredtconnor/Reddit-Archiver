@@ -112,8 +112,8 @@ def subreddits_users():
 def add_subreddit_user():
 
     subreddit_user_data = {
-    'subredditID': request.form.get('subreddit_id'),
-    'userID': request.form.get('user_id')
+    'subreddit_name': request.form.get('subreddit_name'),
+    'username': request.form.get('username')
     }
 
     db.insert_subreddit_user(subreddit_user_data)
