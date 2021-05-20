@@ -39,15 +39,17 @@
 <h1 class="display-6" id="recent_comments">Recent Comments</h1>
 <div class="container-lg" id="comment_table_container">
 
-  <h6>Filter comments by username</h6>
+  <form action="{{ url_for('comments') }}" method="POST">
+    <label for="filter_username" class="form-label">Filter comments by username</label>
   <div class="row">
     <div class="col-4">
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" id="filter_username" name="filter_username" placeholder="Username">
     </div>
     <div class="col-2">
-      <button class="btn btn-primary" type="button">Filter</button>
+      <button type="submit" class="btn btn-primary">Filter</button>
     </div>
   </div>
+  </form>
 
   <table class="table" id="comment_table">
     <thead>

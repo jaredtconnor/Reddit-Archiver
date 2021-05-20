@@ -88,19 +88,28 @@ def comments():
     return render_template("comments.html", comment_data = comment_data)
 
 @app.route('/comments', methods=['POST'])
-def add_comment(): 
+def add_filter_comment():
+    if request.form.get('filter_username') is None:
+        comment_data = {
+        'username': request.form.get('username'),
+        'post_title': request.form.get('post_title'),
+        'body': request.form.get('body'),
+        'num_upvotes': request.form.get('num_upvotes'),
+        'date': request.form.get('comment_date'),
+        }
 
-    comment_data = { 
-    'username': request.form.get('username'),
-    'post_title': request.form.get('post_title'),
-    'body': request.form.get('body'), 
-    'num_upvotes': request.form.get('num_upvotes'), 
-    'date': request.form.get('comment_date'), 
-    }
+        db.insert_comment(comment_data)
 
-    db.insert_comment(comment_data)
+        return redirect(url_for('comments'))
 
-    return redirect(url_for('comments'))
+    else:
+        filter_data = {
+            'username': request.form.get('filter_username')
+        }
+
+        comment_data = db.filter_comments(filter_data)
+
+        return render_template("comments.html", comment_data=comment_data)
 
 @app.route('/subreddits_users', methods=['GET'])
 def subreddits_users():
