@@ -14,9 +14,11 @@ db = Database()
 def index():
     return render_template("index.html")
 
+
 @app.route('/about')
 def about(): 
     return render_template("about.html")
+
 
 @app.route('/subreddits', methods=['GET'])
 def subreddits(): 
@@ -25,19 +27,21 @@ def subreddits():
 
     return render_template("subreddits.html", subreddit_data = subreddit_data)
 
+
 @app.route('/subreddits', methods=['POST'])
 def add_subreddit(): 
 
     subreddit_data = { 
-    'name': request.form.get('subreddit_name'), 
-    'num_users': request.form.get('subreddit_users'),
-    'about': request.form.get('subreddit_about'), 
-    'date': request.form.get('subreddit_date_created'),
+        'name': request.form.get('subreddit_name'),
+        'num_users': request.form.get('subreddit_users'),
+        'about': request.form.get('subreddit_about'),
+        'date': request.form.get('subreddit_date_created')
     }
 
     db.insert_subreddit(subreddit_data)
 
     return redirect(url_for('subreddits'))
+
 
 @app.route('/posts', methods=['GET'])
 def posts(): 
@@ -46,20 +50,22 @@ def posts():
 
     return render_template("posts.html", post_data = post_data)
 
+
 @app.route('/posts', methods=['POST'])
 def add_post():
-        post_data = {
+    post_data = {
         'title': request.form.get('post_title'),
         'subreddit': request.form.get('post_subreddit'),
         'username': request.form.get('post_username'),
         'body': request.form.get('post_body'),
         'num_upvotes': request.form.get('num_upvotes'),
         'date': request.form.get('post_date')
-        }
+    }
 
-        db.insert_post(post_data)
+    db.insert_post(post_data)
 
-        return redirect(url_for('posts'))
+    return redirect(url_for('posts'))
+
 
 @app.route('/update_posts', methods=['POST'])
 def update_posts():
@@ -92,6 +98,7 @@ def users():
 
     return render_template("users.html", user_data=user_data)
 
+
 @app.route('/users', methods=['POST'])
 def add_user():
 
@@ -105,21 +112,23 @@ def add_user():
 
     return redirect(url_for('users'))
 
+
 @app.route('/comments', methods=['GET'])
 def comments(): 
     comment_data = db.read_comments() 
 
     return render_template("comments.html", comment_data = comment_data)
 
+
 @app.route('/comments', methods=['POST'])
 def add_filter_comment():
     if request.form.get('filter_username') is None:
         comment_data = {
-        'username': request.form.get('username'),
-        'post_title': request.form.get('post_title'),
-        'body': request.form.get('body'),
-        'num_upvotes': request.form.get('num_upvotes'),
-        'date': request.form.get('comment_date'),
+            'username': request.form.get('username'),
+            'post_title': request.form.get('post_title'),
+            'body': request.form.get('body'),
+            'num_upvotes': request.form.get('num_upvotes'),
+            'date': request.form.get('comment_date')
         }
 
         db.insert_comment(comment_data)
@@ -135,18 +144,45 @@ def add_filter_comment():
 
         return render_template("comments.html", comment_data=comment_data)
 
+
+@app.route('/update_comments', methods=['POST'])
+def update_comments():
+    update_data = {
+        'commentID': request.form.get('commentID'),
+        'username': request.form.get('comment_username'),
+        'post_title': request.form.get('title'),
+        'body': request.form.get('body'),
+        'subreddit': request.form.get('subredditName'),
+        'num_upvotes': request.form.get('numUpvotes'),
+        'date': request.form.get('commentDate'),
+        'updated': request.form.get('updated')
+    }
+
+    if update_data['updated'] == "0":
+        if ' ' in update_data['date']:
+            i = update_data['date'].find(' ')
+            update_data['date'] = update_data['date'][:i]
+        return render_template("update_comments.html", update_data=update_data)
+
+    else:
+        db.update_comments(update_data)
+
+        return redirect(url_for('comments'))
+
+
 @app.route('/subreddits_users', methods=['GET'])
 def subreddits_users():
     subreddits_users_data = db.read_subreddits_users()
 
     return render_template("subreddits_users.html", subreddits_users_data=subreddits_users_data)
 
+
 @app.route('/subreddits_users', methods=['POST'])
 def add_subreddit_user():
 
     subreddit_user_data = {
-    'subreddit_name': request.form.get('subreddit_name'),
-    'username': request.form.get('username')
+        'subreddit_name': request.form.get('subreddit_name'),
+        'username': request.form.get('username')
     }
 
     db.insert_subreddit_user(subreddit_user_data)

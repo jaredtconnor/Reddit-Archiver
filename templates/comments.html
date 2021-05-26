@@ -84,8 +84,17 @@
         <td>{{ row['subredditName']}}</td>
         <td>{{ row['numUpvotes']}}</td>
         <td class="button_columns">
-          <input class="btn btn-outline-secondary btn-block" value="Update" type="button">
-          <input type="hidden" id="update">
+          <form action="{{ url_for('update_comments') }}" method="POST">
+                <input type="hidden" id="commentID" name="commentID" value="{{ row['commentID'] }}">
+                <input type="hidden" id="comment_username" name="comment_username" value="{{ row['username'] }}">
+                <input type="hidden" id="title" name="title" value="{{ row['title'] }}">
+                <input type="hidden" id="comment_body" name="body" value="{{ row['body'] }}">
+                <input type="hidden" id="subredditName" name="subredditName" value="{{ row['subredditName'] }}">
+                <input type="hidden" id="numUpvotes" name="numUpvotes" value="{{ row['numUpvotes'] }}">
+                <input type="hidden" id="commentDate" name="commentDate" value="{{ row['date'] }}">
+                <input type="hidden" id="updated" name="updated" value="0">
+                <button type="submit" class="btn btn-outline-secondary btn-block">Update</button>
+          </form>
         </td>
         <td class="button_columns">
           <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
