@@ -2,32 +2,36 @@
 
 {% block body %}
 <div class="container-lg p-5" id="main_subreddit_container">
-  <h1 class="display-6" id="add_comment">Update a Subreddit</h1>
-
+  <h4>Update a Subreddit</h4>
   {% if update_data != 0 %}
-  <form action="{{ url_for('update_subreddits') }}" method="PUT">
+  <form action="{{ url_for('update_subreddits') }}" method="POST">
     <div class="mb-3">
-      <label for="subreddit_name" class="form-label">Subreddit Name</label>
-      <input type="text" class="form-control" id="subreddit_name" name="subreddit_name">
+      <label for="subredditName" class="form-label">Subreddit Name</label>
+      <input type="text" class="form-control" id="subredditName" name="subredditName"
+        value="{{ update_data['name'] }}" readonly>
     </div>
     <div class="mb-3">
-      <label for="subreddit_users" class="form-label">Number of Users</label>
-      <input type="text" class="form-control" id="subreddit_users" name="subreddit_users">
+      <label for="numMembers" class="form-label">Number of Users</label>
+      <input type="text" class="form-control" id="numMembers" name="numMembers"
+        value="{{ update_data['num_users'] }}">
     </div>
     <div class="mb-3">
-      <label for="subreddit_about" class="form-label">About</label>
-      <input type="text" class="form-control" id="subreddit_about" name="subreddit_about">
+      <label for="about" class="form-label">About</label>
+      <input type="text" class="form-control" id="about" name="about"
+        value="{{ update_data['about'] }}">
     </div>
     <div class="mb-3">
-      <label for="subreddit_date_created" class="form-label">Date Created</label>
-      <input type="date" class="form-control" id="subreddit_date_created" name="subreddit_date_created">
+      <label for="dateCreated" class="form-label">Date Created</label>
+      <input type="date" class="form-control" id="dateCreated" name="dateCreated"
+        value="{{ update_data['date'] }}">
     </div>
+    <input type="hidden" id="subredditID" name="subredditID" value="{{ update_data['subredditID'] }}">
+    <input type="hidden" id="updated" name="updated" value="1">
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
+  {% endif %}
+
 </div>
 
-  </form>
-  {% endif %}
-</div>
 {% endblock %}

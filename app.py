@@ -51,16 +51,14 @@ def posts():
     return render_template("posts.html", post_data = post_data)
 
 
-@app.route('/update_subreddit', methods=['PUT'])
+@app.route('/update_subreddits', methods=['POST'])
 def update_subreddits():
     update_data = {
-        'commentID': request.form.get('commentID'),
-        'username': request.form.get('comment_username'),
-        'post_title': request.form.get('title'),
-        'body': request.form.get('body'),
-        'subreddit': request.form.get('subredditName'),
-        'num_upvotes': request.form.get('numUpvotes'),
-        'date': request.form.get('commentDate'),
+        'subredditID': request.form.get('subredditID'),
+        'name': request.form.get('subredditName'),
+        'num_users': request.form.get('numMembers'),
+        'about': request.form.get('about'),
+        'date': request.form.get('dateCreated'),
         'updated': request.form.get('updated')
     }
 
@@ -68,12 +66,12 @@ def update_subreddits():
         if ' ' in update_data['date']:
             i = update_data['date'].find(' ')
             update_data['date'] = update_data['date'][:i]
-        return render_template("update_comments.html", update_data=update_data)
+        return render_template("update_subreddits.html", update_data=update_data)
 
     else:
-        db.update_comments(update_data)
+        db.update_subreddits(update_data)
 
-        return redirect(url_for('comments'))
+        return redirect(url_for('subreddits'))
 
 @app.route('/posts', methods=['POST'])
 def add_post():

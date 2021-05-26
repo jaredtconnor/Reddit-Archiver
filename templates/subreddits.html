@@ -59,8 +59,15 @@
         <td>{{ row['about']}}</td>
         <td>{{ row['dateCreated']}}</td>
         <td class="button_columns">
-          <input class="btn btn-outline-secondary btn-block" value="Update" type="button">
-          <input type="hidden" id="update">
+            <form action="{{ url_for('update_subreddits') }}" method="POST">
+              <input type="hidden" id="subredditID" name="subredditID" value="{{ row['subredditID'] }}">
+              <input type="hidden" id="subredditName" name="subredditName" value="{{ row['subredditName'] }}">
+              <input type="hidden" id="numMembers" name="numMembers" value="{{ row['numMembers'] }}">
+              <input type="hidden" id="about" name="about" value="{{ row['about'] }}">
+              <input type="hidden" id="dateCreated" name="dateCreated" value="{{ row['dateCreated'] }}">
+              <input type="hidden" id="updated" name="updated" value="0">
+              <button type="submit" class="btn btn-outline-secondary btn-block">Update</button>
+            </form>
         </td>
         <td class="button_columns">
           <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
