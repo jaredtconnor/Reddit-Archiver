@@ -202,6 +202,16 @@ def update_comments():
         return redirect(url_for('comments'))
 
 
+@app.route('/delete_comments', methods=['POST'])
+def delete_comments():
+    delete_data = {
+        'commentID': request.form.get('commentID')
+    }
+
+    db.delete_comment(delete_data)
+    return redirect(url_for('comments'))
+
+
 @app.route('/subreddits_users', methods=['GET'])
 def subreddits_users():
     subreddits_users_data = db.read_subreddits_users()
