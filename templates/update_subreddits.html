@@ -1,0 +1,33 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+<div class="container-lg p-5" id="main_subreddit_container">
+  <h1 class="display-6" id="add_comment">Update a Subreddit</h1>
+
+  {% if update_data != 0 %}
+  <form action="{{ url_for('update_subreddits') }}" method="PUT">
+    <div class="mb-3">
+      <label for="subreddit_name" class="form-label">Subreddit Name</label>
+      <input type="text" class="form-control" id="subreddit_name" name="subreddit_name">
+    </div>
+    <div class="mb-3">
+      <label for="subreddit_users" class="form-label">Number of Users</label>
+      <input type="text" class="form-control" id="subreddit_users" name="subreddit_users">
+    </div>
+    <div class="mb-3">
+      <label for="subreddit_about" class="form-label">About</label>
+      <input type="text" class="form-control" id="subreddit_about" name="subreddit_about">
+    </div>
+    <div class="mb-3">
+      <label for="subreddit_date_created" class="form-label">Date Created</label>
+      <input type="date" class="form-control" id="subreddit_date_created" name="subreddit_date_created">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
+
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
