@@ -4,18 +4,22 @@
 <div class="container-lg" id="add_container">
   <h1 class="display-6" id="add_sub_user">Add Relationship Between Subreddits & Users</h1>
   <form action="{{ url_for('subreddits_users') }}" method="POST">
-    <div class="mb-3">
-      <label for="sub_user_id" class="form-label">Subreddit_User ID</label>
-      <input type="number" class="form-control" id="sub_user_id" name="sub_user_id" placeholder="Auto-Incrementing" readonly>
-    </div>
-    <div class="mb-3">
-      <label for="subreddit_name" class="form-label">Subreddit Name</label>
-      <input type="text" class="form-control" id="subreddit_name" name="subreddit_name">
-    </div>
-    <div class="mb-3">
-      <label for="username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="username" name="username">
-    </div>
+      <div class="mb-3">
+       <label for="subreddit_name" class="form-label">Choose a Subreddit:</label>
+        <select class="form-control" id="subreddit_name" name="subreddit_name">
+          {% for row in subreddit_data %}
+          <option value="{{ row['subredditName'] }}">{{ row['subredditName'] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+       <label for="username" class="form-label">Choose a User:</label>
+        <select class="form-control" id="username" name="username">
+          {% for row in user_data %}
+          <option value="{{ row['username'] }}">{{ row['username'] }}</option>
+          {% endfor %}
+        </select>
+      </div>
     <button type="submit" class="btn btn-primary">Add Relationship</button>
   </form>
 </div>

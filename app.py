@@ -220,8 +220,10 @@ def delete_comments():
 @app.route('/subreddits_users', methods=['GET'])
 def subreddits_users():
     subreddits_users_data = db.read_subreddits_users()
+    subreddit_data = db.read_subreddits()
+    user_data = db.read_users()
 
-    return render_template("subreddits_users.html", subreddits_users_data=subreddits_users_data)
+    return render_template("subreddits_users.html", subreddits_users_data=subreddits_users_data, subreddit_data=subreddit_data, user_data=user_data)
 
 
 @app.route('/subreddits_users', methods=['POST'])
