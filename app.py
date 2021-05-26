@@ -114,6 +114,16 @@ def update_posts():
         return redirect(url_for('posts'))
 
 
+@app.route('/delete_posts', methods=['POST'])
+def delete_posts():
+    delete_data = {
+        'postID': request.form.get('postID')
+    }
+
+    db.delete_post(delete_data)
+    return redirect(url_for('posts'))
+
+
 @app.route('/users', methods=['GET'])
 def users():
     user_data = db.read_users()
