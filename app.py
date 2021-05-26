@@ -47,20 +47,44 @@ def posts():
     return render_template("posts.html", post_data = post_data)
 
 @app.route('/posts', methods=['POST'])
-def add_post(): 
+def add_post():
+        post_data = {
+        'title': request.form.get('post_title'),
+        'subreddit': request.form.get('post_subreddit'),
+        'username': request.form.get('post_username'),
+        'body': request.form.get('post_body'),
+        'num_upvotes': request.form.get('num_upvotes'),
+        'date': request.form.get('post_date')
+        }
 
-    post_data = { 
-    'title': request.form.get('post_title'), 
-    'subreddit': request.form.get('post_subreddit'),
-    'username': request.form.get('post_username'),
-    'body': request.form.get('post_body'),
-    'num_upvotes': request.form.get('num_upvotes'),
-    'date': request.form.get('post_date')
+        db.insert_post(post_data)
+
+        return redirect(url_for('posts'))
+
+@app.route('/update_posts', methods=['POST'])
+def update_posts():
+    update_data = {
+        'postID': request.form.get('postID'),
+        'title': request.form.get('title'),
+        'subreddit': request.form.get('subredditName'),
+        'username': request.form.get('username'),
+        'body': request.form.get('body'),
+        'num_upvotes': request.form.get('numUpvotes'),
+        'date': request.form.get('postDate'),
+        'updated': request.form.get('updated')
     }
 
-    db.insert_post(post_data)
+    if update_data['updated'] == "0":
+        if ' ' in update_data['date']:
+            i = update_data['date'].find(' ')
+            update_data['date'] = update_data['date'][:i]
+        return render_template("update_posts.html", update_data=update_data)
 
-    return redirect(url_for('posts'))
+    else:
+        db.update_post(update_data)
+
+        return redirect(url_for('posts'))
+
 
 @app.route('/users', methods=['GET'])
 def users():

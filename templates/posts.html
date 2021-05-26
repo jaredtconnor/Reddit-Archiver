@@ -3,33 +3,33 @@
 {% block body %}
 <div class="container-lg p-5" id="main_post_container">
   <h4>Add Posts:</h4>
-  <form action="{{ url_for('posts') }}" method="POST">
-    <div class="mb-3">
-      <label for="post" class="form-label">Post Title</label>
-      <input type="text" class="form-control" id="post_title" name="post_title">
-    </div>
-    <div class="mb-3">
-      <label for="post_subreddit" class="form-label">Subreddit</label>
-      <input type="text" class="form-control" id="post_subreddit" name="post_subreddit">
-    </div>
-    <div class="mb-3">
-      <label for="post_username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="post_username" name="post_username">
-    </div>
-    <div class="mb-3">
-      <label for="post_body" class="form-label">Body</label>
-      <input type="text" class="form-control" id="post_body" name="post_body">
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="num_upvotes">Upvotes</label>
-      <input type="number" class="form-control" id="num_upvotes" name="num_upvotes">
-    </div>
-    <div class="mb-3">
-      <label for="post_date" class="form-label">Date</label>
-      <input type="date" class="form-control" id="post_date" name="post_date">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <form action="{{ url_for('posts') }}" method="POST">
+      <div class="mb-3">
+        <label for="post_title" class="form-label">Post Title</label>
+        <input type="text" class="form-control" id="post_title" name="post_title">
+      </div>
+      <div class="mb-3">
+        <label for="post_subreddit" class="form-label">Subreddit</label>
+        <input type="text" class="form-control" id="post_subreddit" name="post_subreddit">
+      </div>
+      <div class="mb-3">
+        <label for="post_username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="post_username" name="post_username">
+      </div>
+      <div class="mb-3">
+        <label for="post_body" class="form-label">Body</label>
+        <input type="text" class="form-control" id="post_body" name="post_body">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="num_upvotes">Upvotes</label>
+        <input type="number" class="form-control" id="num_upvotes" name="num_upvotes">
+      </div>
+      <div class="mb-3">
+        <label for="post_date" class="form-label">Date</label>
+        <input type="date" class="form-control" id="post_date" name="post_date">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 
 <hr />
@@ -73,8 +73,17 @@
             <td>{{ row['subredditName']}}</td>
             <td>{{ row['username']}}</td>
             <td class="button_columns">
-              <input class="btn btn-outline-secondary btn-block" value="Update" type="button">
-              <input type="hidden" id="update">
+              <form action="{{ url_for('update_posts') }}" method="POST">
+                <input type="hidden" id="postID" name="postID" value="{{ row['postID'] }}">
+                <input type="hidden" id="title" name="title" value="{{ row['title'] }}">
+                <input type="hidden" id="body" name="body" value="{{ row['body'] }}">
+                <input type="hidden" id="numUpvotes" name="numUpvotes" value="{{ row['numUpvotes'] }}">
+                <input type="hidden" id="postDate" name="postDate" value="{{ row['postDate'] }}">
+                <input type="hidden" id="subredditName" name="subredditName" value="{{ row['subredditName'] }}">
+                <input type="hidden" id="username" name="username" value="{{ row['username'] }}">
+                <input type="hidden" id="updated" name="updated" value="0">
+                <button type="submit" class="btn btn-primary">Update</button>
+              </form>
             </td>
             <td class="button_columns">
               <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
