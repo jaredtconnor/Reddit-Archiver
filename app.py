@@ -47,8 +47,10 @@ def add_subreddit():
 def posts(): 
 
     post_data = db.read_posts()
+    subreddit_data = db.read_subreddits()
+    user_data = db.read_users()
 
-    return render_template("posts.html", post_data = post_data)
+    return render_template("posts.html", post_data=post_data, subreddit_data=subreddit_data, user_data=user_data)
 
 
 @app.route('/update_subreddits', methods=['POST'])
@@ -83,6 +85,7 @@ def add_post():
         'num_upvotes': request.form.get('num_upvotes'),
         'date': request.form.get('post_date')
     }
+    print(post_data)
 
     db.insert_post(post_data)
 
@@ -147,9 +150,11 @@ def add_user():
 
 @app.route('/comments', methods=['GET'])
 def comments(): 
-    comment_data = db.read_comments() 
+    comment_data = db.read_comments()
+    post_data = db.read_posts()
+    user_data = db.read_users()
 
-    return render_template("comments.html", comment_data = comment_data)
+    return render_template("comments.html", comment_data=comment_data, post_data=post_data, user_data=user_data)
 
 
 @app.route('/comments', methods=['POST'])
