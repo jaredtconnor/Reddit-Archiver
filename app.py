@@ -47,8 +47,10 @@ def add_subreddit():
 def posts(): 
 
     post_data = db.read_posts()
+    subreddit_data = db.read_subreddits()
+    user_data = db.read_users()
 
-    return render_template("posts.html", post_data = post_data)
+    return render_template("posts.html", post_data=post_data, subreddit_data=subreddit_data, user_data=user_data)
 
 @app.route('/update_subreddits', methods=['POST'])
 def update_subreddits():
@@ -82,6 +84,7 @@ def add_post():
         'num_upvotes': request.form.get('num_upvotes'),
         'date': request.form.get('post_date')
     }
+    print(post_data)
 
     db.insert_post(post_data)
 
@@ -111,6 +114,16 @@ def update_posts():
         db.update_post(update_data)
 
         return redirect(url_for('posts'))
+
+
+@app.route('/delete_posts', methods=['POST'])
+def delete_posts():
+    delete_data = {
+        'postID': request.form.get('postID')
+    }
+
+    db.delete_post(delete_data)
+    return redirect(url_for('posts'))
 
 
 @app.route('/users', methods=['GET'])
@@ -168,9 +181,11 @@ def delete_users():
 
 @app.route('/comments', methods=['GET'])
 def comments(): 
-    comment_data = db.read_comments() 
+    comment_data = db.read_comments()
+    post_data = db.read_posts()
+    user_data = db.read_users()
 
-    return render_template("comments.html", comment_data = comment_data)
+    return render_template("comments.html", comment_data=comment_data, post_data=post_data, user_data=user_data)
 
 
 @app.route('/comments', methods=['POST'])
@@ -223,11 +238,23 @@ def update_comments():
         return redirect(url_for('comments'))
 
 
+@app.route('/delete_comments', methods=['POST'])
+def delete_comments():
+    delete_data = {
+        'commentID': request.form.get('commentID')
+    }
+
+    db.delete_comment(delete_data)
+    return redirect(url_for('comments'))
+
+
 @app.route('/subreddits_users', methods=['GET'])
 def subreddits_users():
     subreddits_users_data = db.read_subreddits_users()
+    subreddit_data = db.read_subreddits()
+    user_data = db.read_users()
 
-    return render_template("subreddits_users.html", subreddits_users_data=subreddits_users_data)
+    return render_template("subreddits_users.html", subreddits_users_data=subreddits_users_data, subreddit_data=subreddit_data, user_data=user_data)
 
 
 @app.route('/subreddits_users', methods=['POST'])

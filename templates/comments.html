@@ -5,17 +5,21 @@
   <h1 class="display-6" id="add_comment">Add a Comment</h1>
   <form action="{{ url_for('comments') }}" method="POST">
     <div class="mb-3">
-      <label for="comment_id" class="form-label">Comment ID</label>
-      <input type="number" class="form-control" id="comment_id" name="comment_id" placeholder="Auto-Incrementing" readonly>
-    </div>
-    <div class="mb-3">
-      <label for="username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="username" name="username">
-    </div>
-    <div class="mb-3">
-      <label for="post_title" class="form-label">Post Title</label>
-      <input type="text" class="form-control" id="post_title" name="post_title">
-    </div>
+       <label for="post_title" class="form-label">Choose a Post:</label>
+        <select class="form-control" id="post_title" name="post_title">
+          {% for row in post_data %}
+          <option value="{{ row['title'] }}">{{ row['title'] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+       <label for="username" class="form-label">Choose a User:</label>
+        <select class="form-control" id="username" name="username">
+          {% for row in user_data %}
+          <option value="{{ row['username'] }}">{{ row['username'] }}</option>
+          {% endfor %}
+        </select>
+      </div>
     <div class="mb-3">
       <label for="body" class="form-label">Body of Comment</label>
       <input type="text" class="form-control" id="body" name="body">
@@ -97,8 +101,10 @@
           </form>
         </td>
         <td class="button_columns">
-          <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
-          <input type="hidden" id="delete">
+          <form action="{{ url_for('delete_comments') }}" method="POST">
+                <input type="hidden" name="commentID" value="{{ row['commentID'] }}">
+                <button type="submit" class="btn btn-outline-secondary btn-block">Delete</button>
+          </form>
         </td>
       </tr>
       {% endfor %}
