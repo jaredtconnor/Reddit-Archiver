@@ -1,6 +1,5 @@
 {% extends "layouts/base.html" %}
 
-
 {% block body %}
 <div class="container-lg p-5" id="main_subreddit_container">
   <h4>Add Subreddit:</h4>
@@ -59,19 +58,21 @@
         <td>{{ row['about']}}</td>
         <td>{{ row['dateCreated']}}</td>
         <td class="button_columns">
-            <form action="{{ url_for('update_subreddits') }}" method="POST">
-              <input type="hidden" id="subredditID" name="subredditID" value="{{ row['subredditID'] }}">
-              <input type="hidden" id="subredditName" name="subredditName" value="{{ row['subredditName'] }}">
-              <input type="hidden" id="numMembers" name="numMembers" value="{{ row['numMembers'] }}">
-              <input type="hidden" id="about" name="about" value="{{ row['about'] }}">
-              <input type="hidden" id="dateCreated" name="dateCreated" value="{{ row['dateCreated'] }}">
-              <input type="hidden" id="updated" name="updated" value="0">
-              <button type="submit" class="btn btn-outline-secondary btn-block">Update</button>
-            </form>
+          <form action="{{ url_for('update_subreddits') }}" method="POST">
+            <input type="hidden" id="subredditID" name="subredditID" value="{{ row['subredditID'] }}">
+            <input type="hidden" id="subredditName" name="subredditName" value="{{ row['subredditName'] }}">
+            <input type="hidden" id="numMembers" name="numMembers" value="{{ row['numMembers'] }}">
+            <input type="hidden" id="about" name="about" value="{{ row['about'] }}">
+            <input type="hidden" id="dateCreated" name="dateCreated" value="{{ row['dateCreated'] }}">
+            <input type="hidden" id="updated" name="updated" value="0">
+            <button type="submit" class="btn btn-outline-secondary btn-block">Update</button>
+          </form>
         </td>
         <td class="button_columns">
-          <input class="btn btn-outline-secondary btn-block" value="Delete" type="button">
-          <input type="hidden" id="delete">
+          <form action="{{ url_for('delete_subreddit') }}" method="POST">
+            <input type="hidden" id="subredditID" name="subredditID" value="{{ row['subredditID'] }}">
+            <button type="submit" class="btn btn-outline-secondary">Delete</button>
+          </form>
         </td>
       </tr>
       {% endfor %}

@@ -7,23 +7,20 @@
   <form action="{{ url_for('update_subreddits') }}" method="POST">
     <div class="mb-3">
       <label for="subredditName" class="form-label">Subreddit Name</label>
-      <input type="text" class="form-control" id="subredditName" name="subredditName"
-        value="{{ update_data['name'] }}" readonly>
+      <input type="text" class="form-control" id="subredditName" name="subredditName" value="{{ update_data['name'] }}"
+        readonly>
     </div>
     <div class="mb-3">
       <label for="numMembers" class="form-label">Number of Users</label>
-      <input type="text" class="form-control" id="numMembers" name="numMembers"
-        value="{{ update_data['num_users'] }}">
+      <input type="text" class="form-control" id="numMembers" name="numMembers" value="{{ update_data['num_users'] }}">
     </div>
     <div class="mb-3">
       <label for="about" class="form-label">About</label>
-      <input type="text" class="form-control" id="about" name="about"
-        value="{{ update_data['about'] }}">
+      <input type="text" class="form-control" id="about" name="about" value="{{ update_data['about'] }}">
     </div>
     <div class="mb-3">
       <label for="dateCreated" class="form-label">Date Created</label>
-      <input type="date" class="form-control" id="dateCreated" name="dateCreated"
-        value="{{ update_data['date'] }}">
+      <input type="date" class="form-control" id="dateCreated" name="dateCreated" value="{{ update_data['date'] }}">
     </div>
     <input type="hidden" id="subredditID" name="subredditID" value="{{ update_data['subredditID'] }}">
     <input type="hidden" id="updated" name="updated" value="1">

@@ -19,7 +19,13 @@ def index():
 def about(): 
     return render_template("about.html")
 
+'''
+####################################################################################
+Subreddits Section
+####################################################################################
 
+
+'''
 @app.route('/subreddits', methods=['GET'])
 def subreddits(): 
 
@@ -43,15 +49,6 @@ def add_subreddit():
     return redirect(url_for('subreddits'))
 
 
-@app.route('/posts', methods=['GET'])
-def posts(): 
-
-    post_data = db.read_posts()
-    subreddit_data = db.read_subreddits()
-    user_data = db.read_users()
-
-    return render_template("posts.html", post_data=post_data, subreddit_data=subreddit_data, user_data=user_data)
-
 @app.route('/update_subreddits', methods=['POST'])
 def update_subreddits():
     update_data = {
@@ -73,6 +70,36 @@ def update_subreddits():
         db.update_subreddits(update_data)
 
         return redirect(url_for('subreddits'))
+
+
+@app.route('/delete_subreddits', methods=['POST'])
+def delete_subreddit():
+
+    delete_data = {
+        'subredditID': request.form.get('subredditID')
+    }
+
+    db.delete_subreddit(delete_data)
+
+    return redirect(url_for('subreddits'))
+
+
+'''
+####################################################################################
+Post Section
+####################################################################################
+
+
+'''
+@app.route('/posts', methods=['GET'])
+def posts(): 
+
+    post_data = db.read_posts()
+    subreddit_data = db.read_subreddits()
+    user_data = db.read_users()
+
+    return render_template("posts.html", post_data=post_data, subreddit_data=subreddit_data, user_data=user_data)
+
 
 @app.route('/posts', methods=['POST'])
 def add_post():
@@ -125,7 +152,13 @@ def delete_posts():
     db.delete_post(delete_data)
     return redirect(url_for('posts'))
 
+'''
+####################################################################################
+Users Section
+####################################################################################
 
+
+'''
 @app.route('/users', methods=['GET'])
 def users():
     user_data = db.read_users()
@@ -145,6 +178,7 @@ def add_user():
     db.insert_user(user_data)
 
     return redirect(url_for('users'))
+
 
 @app.route('/update_users', methods=['POST'])
 def update_users():
@@ -169,6 +203,7 @@ def update_users():
 
         return redirect(url_for('users'))
 
+
 @app.route('/delete_users', methods=['POST'])
 def delete_users():
     delete_data = {
@@ -179,6 +214,13 @@ def delete_users():
 
     return redirect(url_for('users'))
 
+'''
+####################################################################################
+Comments Section
+####################################################################################
+
+
+'''
 @app.route('/comments', methods=['GET'])
 def comments(): 
     comment_data = db.read_comments()
@@ -247,7 +289,13 @@ def delete_comments():
     db.delete_comment(delete_data)
     return redirect(url_for('comments'))
 
+'''
+####################################################################################
+Subreddit_user Section
+####################################################################################
 
+
+'''
 @app.route('/subreddits_users', methods=['GET'])
 def subreddits_users():
     subreddits_users_data = db.read_subreddits_users()
@@ -269,6 +317,16 @@ def add_subreddit_user():
 
     return redirect(url_for('subreddits_users'))
 
+
+@app.route('/delete_subreddits_users', methods=['POST'])
+def delete_subreddit_user():
+    delete_data = {
+        'subredditUserID': request.form.get('subredditUserID')
+    }
+
+    db.delete_subreddit_user(delete_data)
+
+    return redirect(url_for('subreddits_users'))
 
 # Listener
 if __name__ == "__main__":

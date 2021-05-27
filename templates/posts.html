@@ -3,41 +3,41 @@
 {% block body %}
 <div class="container-lg p-5" id="main_post_container">
   <h4>Add Posts:</h4>
-    <form action="{{ url_for('posts') }}" method="POST">
-      <div class="mb-3">
-       <label for="post_subreddit" class="form-label">Choose a Subreddit:</label>
-        <select class="form-control" id="post_subreddit" name="post_subreddit">
-          {% for row in subreddit_data %}
-          <option value="{{ row['subredditName'] }}">{{ row['subredditName'] }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="mb-3">
-       <label for="post_username" class="form-label">Choose a User:</label>
-        <select class="form-control" id="post_username" name="post_username">
-          {% for row in user_data %}
-          <option value="{{ row['username'] }}">{{ row['username'] }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="post_title" class="form-label">Post Title</label>
-        <input type="text" class="form-control" id="post_title" name="post_title">
-      </div>
-      <div class="mb-3">
-        <label for="post_body" class="form-label">Body</label>
-        <input type="text" class="form-control" id="post_body" name="post_body">
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="num_upvotes">Upvotes</label>
-        <input type="number" class="form-control" id="num_upvotes" name="num_upvotes">
-      </div>
-      <div class="mb-3">
-        <label for="post_date" class="form-label">Date</label>
-        <input type="date" class="form-control" id="post_date" name="post_date">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+  <form action="{{ url_for('posts') }}" method="POST">
+    <div class="mb-3">
+      <label for="post_subreddit" class="form-label">Choose a Subreddit:</label>
+      <select class="form-control" id="post_subreddit" name="post_subreddit">
+        {% for row in subreddit_data %}
+        <option value="{{ row['subredditName'] }}">{{ row['subredditName'] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="post_username" class="form-label">Choose a User:</label>
+      <select class="form-control" id="post_username" name="post_username">
+        {% for row in user_data %}
+        <option value="{{ row['username'] }}">{{ row['username'] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="post_title" class="form-label">Post Title</label>
+      <input type="text" class="form-control" id="post_title" name="post_title">
+    </div>
+    <div class="mb-3">
+      <label for="post_body" class="form-label">Body</label>
+      <input type="text" class="form-control" id="post_body" name="post_body">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="num_upvotes">Upvotes</label>
+      <input type="number" class="form-control" id="num_upvotes" name="num_upvotes">
+    </div>
+    <div class="mb-3">
+      <label for="post_date" class="form-label">Date</label>
+      <input type="date" class="form-control" id="post_date" name="post_date">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </div>
 
 <hr />
@@ -61,46 +61,46 @@
       </thead>
       <tbody>
         {% if post_data|length == 0 %}
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         {% else %}
-          {% for row in post_data %}
-          <tr class="table_row">
-            <td>{{ row['postID']}}</td>
-            <td>{{ row['title']}}</td>
-            <td>{{ row['body']}}</td>
-            <td>{{ row['numUpvotes']}}</td>
-            <td>{{ row['postDate']}}</td>
-            <td>{{ row['subredditName']}}</td>
-            <td>{{ row['username']}}</td>
-            <td class="button_columns">
-              <form action="{{ url_for('update_posts') }}" method="POST">
-                <input type="hidden" id="postID" name="postID" value="{{ row['postID'] }}">
-                <input type="hidden" id="title" name="title" value="{{ row['title'] }}">
-                <input type="hidden" id="body" name="body" value="{{ row['body'] }}">
-                <input type="hidden" id="numUpvotes" name="numUpvotes" value="{{ row['numUpvotes'] }}">
-                <input type="hidden" id="postDate" name="postDate" value="{{ row['postDate'] }}">
-                <input type="hidden" id="subredditName" name="subredditName" value="{{ row['subredditName'] }}">
-                <input type="hidden" id="username" name="username" value="{{ row['username'] }}">
-                <input type="hidden" id="updated" name="updated" value="0">
-                <button type="submit" class="btn btn-outline-secondary btn-block">Update</button>
-              </form>
-            </td>
-            <td class="button_columns">
-              <form action="{{ url_for('delete_posts') }}" method="POST">
-                <input type="hidden" name="postID" value="{{ row['postID'] }}">
-                <button type="submit" class="btn btn-outline-secondary btn-block">Delete</button>
-              </form>
-            </td>
-          </tr>
-          {% endfor %}
+        {% for row in post_data %}
+        <tr class="table_row">
+          <td>{{ row['postID']}}</td>
+          <td>{{ row['title']}}</td>
+          <td>{{ row['body']}}</td>
+          <td>{{ row['numUpvotes']}}</td>
+          <td>{{ row['postDate']}}</td>
+          <td>{{ row['subredditName']}}</td>
+          <td>{{ row['username']}}</td>
+          <td class="button_columns">
+            <form action="{{ url_for('update_posts') }}" method="POST">
+              <input type="hidden" id="postID" name="postID" value="{{ row['postID'] }}">
+              <input type="hidden" id="title" name="title" value="{{ row['title'] }}">
+              <input type="hidden" id="body" name="body" value="{{ row['body'] }}">
+              <input type="hidden" id="numUpvotes" name="numUpvotes" value="{{ row['numUpvotes'] }}">
+              <input type="hidden" id="postDate" name="postDate" value="{{ row['postDate'] }}">
+              <input type="hidden" id="subredditName" name="subredditName" value="{{ row['subredditName'] }}">
+              <input type="hidden" id="username" name="username" value="{{ row['username'] }}">
+              <input type="hidden" id="updated" name="updated" value="0">
+              <button type="submit" class="btn btn-outline-secondary btn-block">Update</button>
+            </form>
+          </td>
+          <td class="button_columns">
+            <form action="{{ url_for('delete_posts') }}" method="POST">
+              <input type="hidden" name="postID" value="{{ row['postID'] }}">
+              <button type="submit" class="btn btn-outline-secondary btn-block">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
         {% endif %}
       </tbody>
     </table>

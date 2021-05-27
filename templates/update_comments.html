@@ -7,7 +7,8 @@
   <form action="{{ url_for('update_comments') }}" method="POST">
     <div class="mb-3">
       <label for="comment_username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="comment_username" name="comment_username" value="{{ update_data['username'] }}" readonly>
+      <input type="text" class="form-control" id="comment_username" name="comment_username"
+        value="{{ update_data['username'] }}" readonly>
     </div>
     <div class="mb-3">
       <label for="title" class="form-label">Post Title</label>
@@ -18,12 +19,14 @@
       <input type="text" class="form-control" id="body" name="body">
     </div>
     <div class="mb-3">
-        <label for="subredditName" class="form-label">Subreddit</label>
-        <input type="text" class="form-control" id="subredditName" name="subredditName" value="{{ update_data['subreddit'] }}" readonly>
-      </div>
+      <label for="subredditName" class="form-label">Subreddit</label>
+      <input type="text" class="form-control" id="subredditName" name="subredditName"
+        value="{{ update_data['subreddit'] }}" readonly>
+    </div>
     <div class="mb-3">
       <label for="numUpvotes" class="form-label">Number of Upvotes</label>
-      <input type="number" class="form-control" id="numUpvotes" name="numUpvotes" value="{{ update_data['num_upvotes'] }}" readonly>
+      <input type="number" class="form-control" id="numUpvotes" name="numUpvotes"
+        value="{{ update_data['num_upvotes'] }}" readonly>
     </div>
     <input type="hidden" id="commentID" name="commentID" value="{{ update_data['commentID'] }}">
     <input type="hidden" id="updated" name="updated" value="1">
