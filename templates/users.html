@@ -54,7 +54,22 @@
                 <td>{{ row['username']}}</td>
                 <td>{{ row['karma']}}</td>
                 <td>{{ row['cakeDay']}}</td>
-                <td><button class="btn btn-outline-secondary">Delete</button></td>
+                <td class="button_columns">
+                    <form action="{{ url_for('update_users') }}" method="POST">
+                    <input type="hidden" id="userID" name="userID" value="{{ row['userID'] }}">
+                    <input type="hidden" id="username" name="username" value="{{ row['username'] }}">
+                    <input type="hidden" id="karma" name="karma" value="{{ row['karma'] }}">
+                    <input type="hidden" id="cakeDay" name="cakeDay" value="{{ row['cakeDay'] }}">
+                    <input type="hidden" id="updated" name="updated" value="0">
+                    <button type="submit" class="btn btn-outline-secondary btn-block">Update</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{ url_for('delete_users') }}" method="DELETE">
+                        <input type="hidden" id="userID" name="userID" value="{{ row['userID'] }}">
+                        <button type="submit" class="btn btn-outline-secondary">Delete</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
             {% endif %}

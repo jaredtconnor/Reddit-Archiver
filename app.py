@@ -50,7 +50,6 @@ def posts():
 
     return render_template("posts.html", post_data = post_data)
 
-
 @app.route('/update_subreddits', methods=['POST'])
 def update_subreddits():
     update_data = {
@@ -134,6 +133,38 @@ def add_user():
 
     return redirect(url_for('users'))
 
+@app.route('/update_users', methods=['POST'])
+def update_users():
+    update_data = {
+        'userID': request.form.get('userID'),
+        'username': request.form.get('username'),
+        'karma': request.form.get('karma'),
+        'cakeDay': request.form.get('cakeDay'),
+        'updated': request.form.get('updated')
+    }
+
+    print(update_data)
+
+    if update_data['updated'] == "0":
+        if ' ' in update_data['cakeDay']:
+            i = update_data['cakeDay'].find(' ')
+            update_data['cakeDay'] = update_data['cakeDay'][:i]
+        return render_template("update_users.html", update_data=update_data)
+
+    else:
+        db.update_users(update_data)
+
+        return redirect(url_for('users'))
+
+@app.route('/delete_users', methods=['DELETE'])
+def delete_users():
+    update_data = {
+        'userID': request.form.get('userID')
+    }
+
+    #db.update_users(update_data)
+
+    return redirect(url_for('users'))
 
 @app.route('/comments', methods=['GET'])
 def comments(): 

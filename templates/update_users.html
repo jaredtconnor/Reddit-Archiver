@@ -2,30 +2,22 @@
 
 {% block body %}
 <div class="container-lg" id="add_comment_container">
-  <h1 class="display-6" id="add_comment">Update a Comment</h1>
+  <h4>Update a User</h4>
   {% if update_data != 0 %}
-  <form action="{{ url_for('update_comments') }}" method="POST">
+  <form action="{{ url_for('update_users') }}" method="POST">
     <div class="mb-3">
-      <label for="comment_username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="comment_username" name="comment_username" value="{{ update_data['username'] }}" readonly>
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" name="username" value="{{ update_data['username'] }}" readonly>
     </div>
     <div class="mb-3">
-      <label for="title" class="form-label">Post Title</label>
-      <input type="text" class="form-control" id="title" name="title" value="{{ update_data['post_title'] }}" readonly>
+      <label for="karma" class="form-label">Karma</label>
+      <input type="number" class="form-control" id="karma" name="karma" value="{{ update_data['karma'] }}" readonly>
     </div>
     <div class="mb-3">
-      <label for="body" class="form-label">Body of Comment</label>
-      <input type="text" class="form-control" id="body" name="body">
+      <label for="cakeDay" class="form-label">Cake Day</label>
+      <input type="date" class="form-control" id="cakeDay" name="cakeDay" value="{{ update_data['cakeDay']}}">
     </div>
-    <div class="mb-3">
-        <label for="subredditName" class="form-label">Subreddit</label>
-        <input type="text" class="form-control" id="subredditName" name="subredditName" value="{{ update_data['subreddit'] }}" readonly>
-      </div>
-    <div class="mb-3">
-      <label for="numUpvotes" class="form-label">Number of Upvotes</label>
-      <input type="number" class="form-control" id="numUpvotes" name="numUpvotes" value="{{ update_data['num_upvotes'] }}" readonly>
-    </div>
-    <input type="hidden" id="commentID" name="commentID" value="{{ update_data['commentID'] }}">
+    <input type="hidden" id="userID" name="userID" value="{{ update_data['userID'] }}">
     <input type="hidden" id="updated" name="updated" value="1">
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
