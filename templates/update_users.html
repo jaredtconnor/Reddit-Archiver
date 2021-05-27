@@ -7,11 +7,11 @@
   <form action="{{ url_for('update_users') }}" method="POST">
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="username" name="username" value="{{ update_data['username'] }}" readonly>
+      <input type="text" class="form-control" id="username" name="username" value="{{ update_data['username'] }}">
     </div>
     <div class="mb-3">
       <label for="karma" class="form-label">Karma</label>
-      <input type="number" class="form-control" id="karma" name="karma" value="{{ update_data['karma'] }}" readonly>
+      <input type="number" class="form-control" id="karma" name="karma" value="{{ update_data['karma'] }}">
     </div>
     <div class="mb-3">
       <label for="cakeDay" class="form-label">Cake Day</label>
