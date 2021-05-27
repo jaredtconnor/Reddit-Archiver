@@ -169,13 +169,13 @@ def update_users():
 
         return redirect(url_for('users'))
 
-@app.route('/delete_users', methods=['DELETE'])
+@app.route('/delete_users', methods=['POST'])
 def delete_users():
-    update_data = {
+    delete_data = {
         'userID': request.form.get('userID')
     }
 
-    #db.update_users(update_data)
+    db.delete_users(delete_data)
 
     return redirect(url_for('users'))
 
