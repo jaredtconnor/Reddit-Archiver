@@ -318,7 +318,7 @@ def add_subreddit_user():
     return redirect(url_for('subreddits_users'))
 
 
-@app.route('/delete_subreddits_users', methods=['POST'])
+@app.route('/delete_subs_users', methods=['POST'])
 def delete_subreddit_user():
     delete_data = {
         'subredditUserID': request.form.get('subredditUserID')
