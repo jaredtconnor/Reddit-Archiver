@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 20, 2021 at 07:09 AM
+-- Generation Time: May 28, 2021 at 04:32 AM
 -- Server version: 10.4.18-MariaDB-log
 -- PHP Version: 7.4.16
 
@@ -42,10 +42,10 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`commentID`, `body`, `numUpvotes`, `commentDate`, `postID`, `userID`) VALUES
-(1, 'difficult!', 2, '2021-05-04 23:58:32', 1, 2),
-(2, 'Comment', 4, '2021-05-04 23:56:09', 2, 3),
-(3, 'I love pizza', 2, '2021-05-12 12:09:34', 3, 4),
-(4, 'blah', 1, '2021-05-12 18:36:09', 3, 3);
+(1, 'difficult!', 2, '2021-05-04', 1, 2),
+(2, 'Comment', 4, '2021-05-04', 2, 3),
+(3, 'I love pizza', 2, '2021-05-12', 3, 4),
+(4, 'blah', 1, '2021-05-12', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -69,10 +69,10 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`postID`, `title`, `body`, `numUpvotes`, `postDate`, `subredditID`, `userID`) VALUES
-(1, 'CS 325 Midterm Format', 'Post Body', 9, '2021-05-04 23:54:32', 1, 1),
-(2, 'Golden Retriver goes Mountain Biking', 'Post Body', 1000, '2021-05-04 23:55:45', 2, 1),
-(3, 'Margherita Pizza', 'I love pizza', 55, '2021-05-12 12:08:34', 3, 3),
-(4, 'blah blah', 'random post!', 1, '2021-05-12 18:33:09', 2, 4);
+(1, 'CS 325 Midterm Format', 'Post Body', 9, '2021-05-04', 1, 1),
+(2, 'Golden Retriver goes Mountain Biking', 'Post Body', 1000, '2021-05-04', 2, 1),
+(3, 'Margherita Pizza', 'I love pizza', 55, '2021-05-12', 3, 3),
+(4, 'blah blah', 'random post!', 1, '2021-05-12', 2, 4);
 
 -- --------------------------------------------------------
 
