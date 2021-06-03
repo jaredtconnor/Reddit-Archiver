@@ -26,14 +26,14 @@ INSERT INTO subreddits_users (subredditID, userID) VALUES
 
 
 INSERT INTO posts (title, body, numUpvotes, postDate, subredditID, userID) VALUES
-('CS 325 Midterm Format', 'Post Body', 9, '2021-05-04 23:54:32', 1, 1),
-('Golden Retriver goes Mountain Biking', 'Post Body', 1000, '2021-05-04 23:55:45', 2, 1),
-('Margherita Pizza', 'I love pizza', 55, '2021-05-12 12:08:34', 3, 3),
-('blah blah', 'random post!', 1, '2021-05-12 18:33:09', 2, 4);
+('CS 325 Midterm Format', 'Post Body', 9, '2021-05-04', 1, 1),
+('Golden Retriver goes Mountain Biking', 'Post Body', 1000, '2021-05-04', 2, 1),
+('Margherita Pizza', 'I love pizza', 55, '2021-05-12', 3, 3),
+('blah blah', 'random post!', 1, '2021-05-12', 2, 4);
 
 
 INSERT INTO comments (body, numUpvotes, commentDate, postID, userID) VALUES
-('difficult!', 2, '2021-05-04 23:58:32', 1, 2),
-('Comment', 4, '2021-05-04 23:56:09', 2, 3),
-('I love pizza', 2, '2021-05-12 12:09:34', 3, 4),
-('blah', 1, '2021-05-12 18:36:09', 3, 3);
+('difficult!', 2, '2021-05-04', 1, 2),
+('Comment', 4, '2021-05-04', 2, 3),
+('I love pizza', 2, '2021-05-12', 3, 4),
+('blah', 1, '2021-05-12', 3, 3);
