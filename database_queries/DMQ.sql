@@ -96,16 +96,28 @@ SET title = :newTitle,
     body = :newBody
 WHERE posts.postID = :postID
 
---Edit (Update) a Subreddits description
+--Edit (Update) a Subreddit
 UPDATE subreddits
-SET about = :newAbout
-WHERE subreddits.subredditID = :subredditID
+SET numMembers = :newNumMembers,
+about = :newAbout,
+dateCreated = :newDateCreated
+WHERE subreddits.subredditID = :subredditID;
+
+--Edit (Update) a User
+UPDATE users
+SET username = :newUsername,
+cakeDay = :newCakeDay,
+karma = :newKarma,
+WHERE users.userID = :userID;
 
 --Delete a Comment
 DELETE FROM comments
 WHERE comments.commentID = :commentID;
 
---Delete a User
+--Delete a User (next 2 queries)
+DELETE FROM subreddits_users
+WHERE subreddits_users.userID = :userID;
+
 DELETE FROM users
 WHERE users.userID = :userID;
 
@@ -117,7 +129,10 @@ WHERE subreddits_users.subredditUserID = :subredditUserID;
 DELETE FROM posts 
 WHERE posts.postID = :postID; 
 
---Delete a Subreddit
+--Delete a Subreddit (next 2 queries)
+DELETE FROM subreddits_users
+WHERE subreddits_users.subredditID = :subredditID;
+
 DELETE FROM subreddits 
 WHERE subreddits.subredditID = :subredditID; 
 
