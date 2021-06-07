@@ -6,27 +6,31 @@
   {% if update_data != 0 %}
   <form action="{{ url_for('update_comments') }}" method="POST">
     <div class="mb-3">
-      <label for="comment_username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="comment_username" name="comment_username"
-        value="{{ update_data['username'] }}" readonly>
+      <label for="comment_username" class="form-label">Choose a User:</label>
+      <select class="form-control" id="comment_username" name="comment_username">
+        <option value="NULL">None</option>
+        {% for row in user_data %}
+        <option value="{{ row['username'] }}">{{ row['username'] }}</option>
+        {% endfor %}
+      </select>
     </div>
     <div class="mb-3">
-      <label for="title" class="form-label">Post Title</label>
-      <input type="text" class="form-control" id="title" name="title" value="{{ update_data['post_title'] }}" readonly>
+      <label for="title" class="form-label">Choose a Post:</label>
+      <select class="form-control" id="title" name="title">
+        <option value="NULL">None</option>
+        {% for row in post_data %}
+        <option value="{{ row['title'] }}">{{ row['title'] }}</option>
+        {% endfor %}
+      </select>
     </div>
     <div class="mb-3">
       <label for="body" class="form-label">Body of Comment</label>
       <input type="text" class="form-control" id="body" name="body" required>
     </div>
     <div class="mb-3">
-      <label for="subredditName" class="form-label">Subreddit</label>
-      <input type="text" class="form-control" id="subredditName" name="subredditName"
-        value="{{ update_data['subreddit'] }}" readonly>
-    </div>
-    <div class="mb-3">
       <label for="numUpvotes" class="form-label">Number of Upvotes</label>
       <input type="number" class="form-control" id="numUpvotes" name="numUpvotes"
-        value="{{ update_data['num_upvotes'] }}" readonly>
+        value="{{ update_data['num_upvotes'] }}" required>
     </div>
     <input type="hidden" id="commentID" name="commentID" value="{{ update_data['commentID'] }}">
     <input type="hidden" id="updated" name="updated" value="1">

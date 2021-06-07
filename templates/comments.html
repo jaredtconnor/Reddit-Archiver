@@ -7,6 +7,7 @@
     <div class="mb-3">
       <label for="post_title" class="form-label">Choose a Post:</label>
       <select class="form-control" id="post_title" name="post_title">
+        <option value="NULL">None</option>
         {% for row in post_data %}
         <option value="{{ row['title'] }}">{{ row['title'] }}</option>
         {% endfor %}
@@ -15,6 +16,7 @@
     <div class="mb-3">
       <label for="username" class="form-label">Choose a User:</label>
       <select class="form-control" id="username" name="username">
+        <option value="NULL">None</option>
         {% for row in user_data %}
         <option value="{{ row['username'] }}">{{ row['username'] }}</option>
         {% endfor %}

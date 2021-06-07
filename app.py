@@ -270,11 +270,14 @@ def update_comments():
         'updated': request.form.get('updated')
     }
 
+    post_data = db.read_posts()
+    user_data = db.read_users()
+
     if update_data['updated'] == "0":
         if ' ' in update_data['date']:
             i = update_data['date'].find(' ')
             update_data['date'] = update_data['date'][:i]
-        return render_template("update_comments.html", update_data=update_data)
+        return render_template("update_comments.html", update_data=update_data, post_data=post_data, user_data=user_data)
 
     else:
         db.update_comments(update_data)
