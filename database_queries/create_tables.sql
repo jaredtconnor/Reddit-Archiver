@@ -27,8 +27,8 @@ CREATE TABLE subreddits_users
   subredditID INT NOT NULL,
   userID INT NOT NULL,
   PRIMARY KEY (subredditUserID),
-  FOREIGN KEY (subredditID) REFERENCES subreddits(subredditID),
-  FOREIGN KEY (userID) REFERENCES users(userID),
+  FOREIGN KEY (subredditID) REFERENCES subreddits(subredditID) ON DELETE CASCADE,
+  FOREIGN KEY (userID) REFERENCES users(userID) ON DELETE CASCADE,
   UNIQUE(subredditUserID)
 );
 
@@ -42,8 +42,8 @@ CREATE TABLE posts
   subredditID INT,
   userID INT,
   PRIMARY KEY (postID),
-  FOREIGN KEY (subredditID) REFERENCES subreddits(subredditID),
-  FOREIGN KEY (userID) REFERENCES users(userID),
+  FOREIGN KEY (subredditID) REFERENCES subreddits(subredditID) ON DELETE SET NULL,
+  FOREIGN KEY (userID) REFERENCES users(userID) ON DELETE SET NULL,
   UNIQUE(postID)
 );
 
@@ -56,8 +56,8 @@ CREATE TABLE comments
   postID INT,
   userID INT,
   PRIMARY KEY (commentID),
-  FOREIGN KEY (postID) REFERENCES posts(postID),
-  FOREIGN KEY (userID) REFERENCES users(userID),
+  FOREIGN KEY (postID) REFERENCES posts(postID) ON DELETE SET NULL,
+  FOREIGN KEY (userID) REFERENCES users(userID) ON DELETE SET NULL,
   UNIQUE(commentID)
 );
 
