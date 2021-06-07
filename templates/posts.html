@@ -7,19 +7,19 @@
     <div class="mb-3">
       <label for="post_subreddit" class="form-label">Choose a Subreddit:</label>
       <select class="form-control" id="post_subreddit" name="post_subreddit">
+        <option value="NULL">None</option>
         {% for row in subreddit_data %}
         <option value="{{ row['subredditName'] }}">{{ row['subredditName'] }}</option>
         {% endfor %}
-        <option value="NULL">None</option>
       </select>
     </div>
     <div class="mb-3">
       <label for="post_username" class="form-label">Choose a User:</label>
       <select class="form-control" id="post_username" name="post_username">
+        <option value="NULL">None</option>
         {% for row in user_data %}
         <option value="{{ row['username'] }}">{{ row['username'] }}</option>
         {% endfor %}
-        <option value="NULL">None</option>
       </select>
     </div>
     <div class="mb-3">
