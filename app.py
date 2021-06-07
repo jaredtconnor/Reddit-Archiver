@@ -111,7 +111,6 @@ def add_post():
         'num_upvotes': request.form.get('num_upvotes'),
         'date': request.form.get('post_date')
     }
-    print(post_data)
 
     db.insert_post(post_data)
 
@@ -131,11 +130,14 @@ def update_posts():
         'updated': request.form.get('updated')
     }
 
+    subreddit_data = db.read_subreddits()
+    user_data = db.read_users()
+
     if update_data['updated'] == "0":
         if ' ' in update_data['date']:
             i = update_data['date'].find(' ')
             update_data['date'] = update_data['date'][:i]
-        return render_template("update_posts.html", update_data=update_data)
+        return render_template("update_posts.html", update_data=update_data, subreddit_data=subreddit_data, user_data=user_data)
 
     else:
         db.update_post(update_data)

@@ -10,6 +10,7 @@
         {% for row in subreddit_data %}
         <option value="{{ row['subredditName'] }}">{{ row['subredditName'] }}</option>
         {% endfor %}
+        <option value="NULL">None</option>
       </select>
     </div>
     <div class="mb-3">
@@ -18,6 +19,7 @@
         {% for row in user_data %}
         <option value="{{ row['username'] }}">{{ row['username'] }}</option>
         {% endfor %}
+        <option value="NULL">None</option>
       </select>
     </div>
     <div class="mb-3">

@@ -7,30 +7,38 @@
   <form action="{{ url_for('update_posts') }}" method="POST">
     <div class="mb-3">
       <label for="title" class="form-label">Post Title</label>
-      <input type="text" class="form-control" id="title" name="title" value="{{ update_data['title'] }}" readonly>
+      <input type="text" class="form-control" id="title" name="title" value="{{ update_data['title'] }}" required>
     </div>
     <div class="mb-3">
       <label for="subredditName" class="form-label">Subreddit</label>
-      <input type="text" class="form-control" id="subredditName" name="subredditName"
-        value="{{ update_data['subreddit'] }}" readonly>
+      <select class="form-control" id="subredditName" name="subredditName">
+        {% for row in subreddit_data %}
+        <option value="{{ row['subredditName'] }}">{{ row['subredditName'] }}</option>
+        {% endfor %}
+        <option value="NULL">None</option>
+      </select>
     </div>
     <div class="mb-3">
-      <label for="username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="username" name="username" value="{{ update_data['username'] }}"
-        readonly>
+      <label for="username" class="form-label">Choose a User:</label>
+      <select class="form-control" id="username" name="username">
+        {% for row in user_data %}
+        <option value="{{ row['username'] }}">{{ row['username'] }}</option>
+        {% endfor %}
+        <option value="NULL">None</option>
+      </select>
     </div>
     <div class="mb-3">
       <label for="body" class="form-label">Body</label>
-      <input type="text" class="form-control" id="body" name="body" required>
+      <input type="text" class="form-control" id="body" name="body" value="{{ update_data['body'] }}" required>
     </div>
     <div class="mb-3">
       <label class="form-label" for="numUpvotes">Upvotes</label>
       <input type="number" class="form-control" id="numUpvotes" name="numUpvotes"
-        value="{{ update_data['num_upvotes'] }}" readonly>
+        value="{{ update_data['num_upvotes'] }}" required>
     </div>
     <div class="mb-3">
       <label for="postDate" class="form-label">Date</label>
-      <input type="date" class="form-control" id="postDate" name="postDate" value="{{ update_data['date'] }}" readonly>
+      <input type="date" class="form-control" id="postDate" name="postDate" value="{{ update_data['date'] }}" required>
     </div>
     <input type="hidden" id="postID" name="postID" value="{{ update_data['postID'] }}">
     <input type="hidden" id="updated" name="updated" value="1">
