@@ -58,7 +58,7 @@
         <td>{{ row['username']}}</td>
         <td>
           <form action="/delete_subs_users" method="POST">
-            <input type="hidden" id="subredditUserID" name="subredditUserID" value="{{ row['subredditUserID'] }}">
+            <input type="hidden" id="subredditUserID" name="subredditUserID" value="{{ row['subredditUserID'] }}" required>
             <button type="submit" class="btn btn-outline-secondary">Delete</button>
           </form>
         </td>
