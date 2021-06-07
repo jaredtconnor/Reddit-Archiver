@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 28, 2021 at 04:32 AM
+-- Generation Time: Jun 07, 2021 at 06:35 AM
 -- Server version: 10.4.18-MariaDB-log
 -- PHP Version: 7.4.16
 
@@ -240,22 +240,22 @@ ALTER TABLE `users`
 -- Constraints for table `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `posts` (`postID`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`);
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `posts` (`postID`) ON DELETE SET NULL,
+  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `posts`
 --
 ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`subredditID`) REFERENCES `subreddits` (`subredditID`),
-  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`);
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`subredditID`) REFERENCES `subreddits` (`subredditID`) ON DELETE SET NULL,
+  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `subreddits_users`
 --
 ALTER TABLE `subreddits_users`
-  ADD CONSTRAINT `subreddits_users_ibfk_1` FOREIGN KEY (`subredditID`) REFERENCES `subreddits` (`subredditID`),
-  ADD CONSTRAINT `subreddits_users_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`);
+  ADD CONSTRAINT `subreddits_users_ibfk_1` FOREIGN KEY (`subredditID`) REFERENCES `subreddits` (`subredditID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `subreddits_users_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
