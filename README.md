@@ -1,5 +1,5 @@
 # Reddit Archiver
-Python CRUD based database web application. Pulling from a MySql hosted on AWS. 
+Python CRUD based database web application. Pulling from a MySql hosted on AWS. Created in part for [OSU's CS340](https://ecampus.oregonstate.edu/soc/ecatalog/ecoursedetail.htm?subject=CS&coursenumber=340&termcode=all), introduction to databases. Utilizes a classic Entity Relationship diagram/schema to act as a simple transactional database. 
 
 ## Development Steps: 
 1) Create a [virtual environment](https://realpython.com/python-virtual-environments-a-primer/#what-is-a-virtual-environment) based on  `venv` (i.e. `python3 -m venv env` if already installed)
