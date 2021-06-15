@@ -1,5 +1,5 @@
 # Reddit Archiver
-Archive project for Reddit based on a Flask backend manipulating a MySql database.
+Python CRUD based database web application. Pulling from a MySql hosted on AWS. 
 
 ## Development Steps: 
 1) Create a [virtual environment](https://realpython.com/python-virtual-environments-a-primer/#what-is-a-virtual-environment) based on  `venv` (i.e. `python3 -m venv env` if already installed)
